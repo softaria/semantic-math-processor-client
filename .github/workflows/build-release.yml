@@ -18,9 +18,8 @@ jobs:
     - run: echo $NODE_ENV
     - run: export NODE_ENV="production";echo $NODE_ENV; node node_modules/.bin/webpack
     - run: mkdir distrib
-    - run: RELEASE_VERSION_NUMBER="$(echo $GITHUB_REF | cut -c19-)";
-    - run: echo ${RELEASE_VERSION_NUMBER}
-    - run: sed -i -e 's|<version>|'$RELEASE_VERSION_NUMBER'|g' dist-package.json
+    - run: echo $GITHUB_REF
+    - run: RELEASE_VERSION_NUMBER="$(echo $GITHUB_REF | cut -c19-)"; echo ${RELEASE_VERSION_NUMBER}; sed -i -e 's|<version>|'$RELEASE_VERSION_NUMBER'|g' dist-package.json
     # copy all staff to distrib
     - run: cp dist/* distrib/
     - run: cp tsOutputs/src/*.d.ts distrib/
