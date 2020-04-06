@@ -1,7 +1,7 @@
 # semantic-math-processor-client
 
 ![Build and Test](https://github.com/softaria/semantic-math-processor-client/workflows/Build%20and%20Test/badge.svg)
-![Released to NPM](https://github.com/softaria/semantic-math-processor-client/workflows/Build%20Release/badge.svg)
+![npm](https://img.shields.io/npm/v/semantic-math-processor-client)
 
 Semantic Math Processor Client is a plugin for [SemanticMathEditor](https://github.com/softaria/semantic-math-editor) and a client for [MathProcessor](https://github.com/softaria/math-processor).
 
