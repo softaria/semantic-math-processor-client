@@ -17,9 +17,11 @@ jobs:
     - run: echo '123'
     - run: echo $GITHUB_BASE_REF
     - run: echo $BRANCH_NAME    
-    - run: echo $GITHUB_BASE_REF | cut -c9-
+    - run: echo $BRANCH_NAME | cut -c9-
     - run: echo $SERVER
+    - run: echo ${{ github.ref }}
+    - run: echo '${{ github.ref }}'
     env:
       SERVER: production    
-      BRANCH_NAME: ${{ github.base_ref }}
+      BRANCH_NAME: ${{ github.ref }}
       
