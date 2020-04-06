@@ -12,7 +12,7 @@
   "repository": {
     "type" : "git",
     "url" : "https://github.com/softaria/semantic-math-processor-client.git"
-  }     
+  },
   "contributors": [
 	{ "name" : "Roman Kuzmin", "email" : "roman@softaria.com" }
   ],
