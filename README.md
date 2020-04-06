@@ -18,3 +18,8 @@ node node_modules/.bin/webpack
 
 4. Open testEquiv.html and testSimplify.html in you browser (do not move the html files - open them in place)
 
+# How to install it
+
+```
+npm i semantic-math-processor-client
+```
