@@ -2,7 +2,7 @@
 
 Semantic Math Processor Client is a plugin for [SemanticMathEditor](https://github.com/softaria/semantic-math-editor) and a client for [MathProcessor](https://github.com/softaria/math-processor).
 
-Being a plugin for SemanticMathEditor it allows processing math formula created in the editor using MathProcessor - a REST wrapper around [Sympy](https://sympy.org) - open source Computer Algebra System.
+Being a plugin for SemanticMathEditor **it allows processing math formula created in the online math editor** using MathProcessor - a REST wrapper around [Sympy](https://sympy.org) - open source Computer Algebra System.
 
 As a result you have online web editor, which can do things like integration, taking derivatives, calculating limits, creating plots, comparing if two math expressions are equivalent and so on.
 
