@@ -10,7 +10,11 @@ Being a plugin for SemanticMathEditor **it allows processing math formula create
 
 As a result you have online web editor, which can do things like integration, taking derivatives, calculating limits, creating plots, comparing if two math expressions are equivalent and so on.
 
-# How to try it
+# See it in action
+
+https://math-editor.com/integrationsDemo.html
+
+# Try it locally
 
 1. Checkout the project
 2. Ensure you have [npm](https://www.npmjs.com/get-npm) and [node.js](https://nodejs.org/en/download/)
@@ -22,12 +26,9 @@ node node_modules/.bin/webpack
 
 4. Open testEquiv.html and testSimplify.html in you browser (do not move the html files - open them in place)
 
-# How to install it
+# Install it
 
 ```
 npm i semantic-math-processor-client
 ```
 
-# See it in action
-
-https://math-editor.com/integrationsDemo.html
