@@ -9,7 +9,7 @@ As a result you have online web editor, which can do things like integration, ta
 # How to try it
 
 1. Checkout the project
-1. Ensure you have [npm](https://www.npmjs.com/get-npm)
+1. Ensure you have [npm](https://www.npmjs.com/get-npm) and [node.js](https://nodejs.org/en/download/)
 2. Run following commands
 ```
 npm install
