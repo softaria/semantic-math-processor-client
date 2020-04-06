@@ -37,7 +37,7 @@ To start your own copy of the MathProcessor just run:
 ```
 where 80 is your local port
 
-# Install it
+# Install it from npm
 
 ```
 npm i semantic-math-processor-client
