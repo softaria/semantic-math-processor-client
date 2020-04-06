@@ -31,7 +31,7 @@ function getOptimizations() {
 }
 
 module.exports = [{
-    name: "semantic-math-editor-sympy",
+    name: "semantic-math-processor-client",
     mode: isProd ? 'none' : 'development',
 
     entry: {
@@ -41,7 +41,7 @@ module.exports = [{
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         libraryTarget: 'umd',
-        library: 'SemanticMathEditorSympy',
+        library: 'SemanticMathProcessorClient',
         umdNamedDefine: true,
     },
     module: {

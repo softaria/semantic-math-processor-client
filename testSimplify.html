@@ -116,7 +116,7 @@
 
   <script>
     //FIXME:
-    const sympyClient = new SemanticMathEditorSympy.SympyClient("https://math-processor.math-editor.com");
+    const sympyClient = new SemanticMathProcessorClient.SympyClient("https://math-processor.math-editor.com");
 
     const el1 = document.getElementById("ed1");
     const editor1 = SemanticMathEditor.createEditor(el1, true);
@@ -161,7 +161,7 @@
       if (validation()) {
         const semantic = editor1.getSemantic().semantic;
         const e = sympyClient.prepareCompute(semantic);
-        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           sympyClient.simplify(e).then(
             (simplified) => {
               editor2.setTree(simplified);
@@ -184,7 +184,7 @@
       if (validation()) {
         const semantic = editor1.getSemantic().semantic;
         const e = sympyClient.prepareCompute(semantic);
-        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           sympyClient.compute(e).then(
             (simplified) => {
               editor2.setTree(simplified);
@@ -208,7 +208,7 @@
       if (validation()) {
         const semantic = editor1.getSemantic().semantic;
         const e = sympyClient.prepareCompute(semantic);
-        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           sympyClient.mirror(e).then(
             (simplified) => {
               editor2.setTree(simplified);
@@ -231,7 +231,7 @@
       if (validation()) {
         const semantic = editor1.getSemantic().semantic;
         const e = sympyClient.prepareCompute(semantic);
-        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           sympyClient.latex(e).then(
             (ltx) => {
               document.getElementById("latex").innerHTML = ltx;
@@ -258,7 +258,7 @@
       if (validation()) {
         const semantic = editor1.getSemantic().semantic;
         const e = sympyClient.prepareCompute(semantic);
-        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           const el = document.getElementById("plot");
           el.innerHTML = "";
           let exps = [e];
@@ -266,7 +266,7 @@
           if (validation2()) {
             const semantic2 = editor2.getSemantic().semantic;
             const e2 = sympyClient.prepareCompute(semantic2);
-            if (e2 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+            if (e2 instanceof SemanticMathProcessorClient.PreparedSympyCall) {
               exps.push(e2);
             }
           }
@@ -289,7 +289,7 @@
       if (validation()) {
         const semantic = editor1.getSemantic().semantic;
         const e = sympyClient.prepareCompute(semantic);
-        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           const el = document.getElementById("plot");
           el.innerHTML = "";
 
@@ -324,7 +324,7 @@
         const e2 = sympyClient.prepareCompute(semantic2);
 
 
-        if (e1 instanceof SemanticMathEditorSympy.PreparedSympyCall && e2 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e1 instanceof SemanticMathProcessorClient.PreparedSympyCall && e2 instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           const el = document.getElementById("plot");
           el.innerHTML = "";
 
@@ -349,7 +349,7 @@
         const semantic3 = editor3.getSemantic().semantic;
         const e3 = sympyClient.prepareCompute(semantic3);
 
-        const vars = SemanticMathEditorSympy.getAllVariablesFromNodes([semantic1, semantic2, semantic3]);
+        const vars = SemanticMathProcessorClient.getAllVariablesFromNodes([semantic1, semantic2, semantic3]);
 
         if(vars.length!=1) {
           alert("All threee expressions must contain exactly one variable");
@@ -358,7 +358,7 @@
 
         const interval = sympyClient.preparePlotInterval(vars[0], -10, 10);
 
-        if (e1 instanceof SemanticMathEditorSympy.PreparedSympyCall && e2 instanceof SemanticMathEditorSympy.PreparedSympyCall && e3 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e1 instanceof SemanticMathProcessorClient.PreparedSympyCall && e2 instanceof SemanticMathProcessorClient.PreparedSympyCall && e3 instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           const el = document.getElementById("plot");
           el.innerHTML = "";
 
@@ -384,7 +384,7 @@
         const semantic3 = editor3.getSemantic().semantic;
         const e3 = sympyClient.prepareCompute(semantic3);
 
-        const vars = SemanticMathEditorSympy.getAllVariablesFromNodes([semantic1, semantic2, semantic3]);
+        const vars = SemanticMathProcessorClient.getAllVariablesFromNodes([semantic1, semantic2, semantic3]);
 
         if(vars.length!=2) {
           alert("The number of variables within the expressions must be 2");
@@ -394,7 +394,7 @@
         const interval1 = sympyClient.preparePlotInterval(vars[0], -10, 10);
         const interval2 = sympyClient.preparePlotInterval(vars[1], -10, 10);
 
-        if (e1 instanceof SemanticMathEditorSympy.PreparedSympyCall && e2 instanceof SemanticMathEditorSympy.PreparedSympyCall && e3 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+        if (e1 instanceof SemanticMathProcessorClient.PreparedSympyCall && e2 instanceof SemanticMathProcessorClient.PreparedSympyCall && e3 instanceof SemanticMathProcessorClient.PreparedSympyCall) {
           const el = document.getElementById("plot");
           el.innerHTML = "";
 

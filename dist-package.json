@@ -1,9 +1,21 @@
 {
-  "name": "semantic-math-editor-sympy",
+  "name": "semantic-math-processor-client",
   "version": "<version>",
   "main": "index.bundle.js",
   "types": "index.d.ts",
-
+  "description": "Semantic Math Processor Client is a plugin for SemanticMathEditor, which allows making math calculation using Math Processor - our REST wrapper around Sympy CAS",
+  "keywords":["math editor", "Sympy client","CAS", "Math calculation online","Algebra","Calculus","Plotting"],
+  "homepage": "https://github.com/softaria/semantic-math-processor-client",
+  "bugs":"https://github.com/softaria/semantic-math-processor-client/issues",
+  "license" : "BSD-3-Clause",
+  "author": "Softaria LLC",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/softaria/semantic-math-processor-client.git"
+  }     
+  "contributors": [
+	{ "name" : "Roman Kuzmin", "email" : "roman@softaria.com" }
+  ],
   "peerDependencies": {
     "semantic-math-editor": "^1.20.4"
   }

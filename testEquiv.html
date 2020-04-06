@@ -90,7 +90,7 @@
   <script>
 
     var client = new SemanticMathEditor.MathServerClient("http://stran.mobi:9999");
-    const sympyClient = new SemanticMathEditorSympy.SympyClient("https://math-processor.math-editor.com");
+    const sympyClient = new SemanticMathProcessorClient.SympyClient("https://math-processor.math-editor.com");
 
     var calcState = document.getElementById("calculus_state");
     var algbState = document.getElementById("algebra_state");
@@ -164,7 +164,7 @@
           const e1 = sympyClient.prepareCompute(mn1);
           const e2 = sympyClient.prepareCompute(mn2);
 
-          if (e1 instanceof SemanticMathEditorSympy.PreparedSympyCall && e2 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          if (e1 instanceof SemanticMathProcessorClient.PreparedSympyCall && e2 instanceof SemanticMathProcessorClient.PreparedSympyCall) {
             sympyClient.checkEquivalence(e1, e2).then(
               (equiv) => {
                 if (equiv.eq != 'different') {
