@@ -5,3 +5,18 @@ Semantic Math Processor Client is a plugin for [SemanticMathEditor](https://gith
 Being a plugin for SemanticMathEditor it allows processing math formula created in the editor using MathProcessor - a REST wrapper around [Sympy](https://sympy.org) - open source Computer Algebra System.
 
 As a result you have online web editor, which can do things like integration, taking derivatives, calculating limits, creating plots, comparing if two math expressions are equivalent and so on.
+
+# How to try
+
+1. Checkout the project
+2. Run 
+```
+npm install
+```
+3. Build it with
+```
+node node_modules/.bin/webpack
+```
+
+4. Open testEquiv.html and testSimplify.html in you browser (do not move the html files - open them in place)
+
