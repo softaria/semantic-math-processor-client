@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-  <meta title="Matharia demo" />
+  <meta title="Semantic Math Processor Client Demo" />
 
   <!--Katex CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
@@ -27,8 +27,8 @@
 <body>
 
   <div class="px-3 pt-md-5 mx-auto text-center">
-    <h1 class="display-4">Simpy Client Test page</h1>
-    <p class="lead">Interactive math recognition technology</p>
+    <h1 class="display-4">Semantic Math Processor Client Demo</h1>
+    <p class="lead">Please type two math expressions to check for equivalence</p>
   </div>
   <div class="container">
     <div class="row">
@@ -45,7 +45,7 @@
                       onclick="openKeyboard1();">keyboard</button>
                   </div>
                 </div>
-                <small id="errors1" class="form-text text-muted">Type math formula here</small>
+                <small id="errors1" class="form-text text-muted">Type math formula here. Press "\" to start a context assistant.</small>
                 <br />
                 <div class="input-group mb-3" aria-label="Editor 2">
                   <div id="ed2" class="form-control editor-field auto-height" tabindex="1"
@@ -55,16 +55,14 @@
                       onclick="openKeyboard2();">keyboard</button>
                   </div>
                 </div>
-                <small id="errors2" class="form-text text-muted">Or here</small>
+                <small id="errors2" class="form-text text-muted">Type math formula here. Press "\" to start a context assistant.</small>
               </form>
             </div>
           </div>
           <br />
           <div class="row">
             <div class="col-md-auto">
-              <span id="calculus_state" class="badge badge-secondary">No calculus equivavlence</span>
-              <span id="algebra_state" class="badge badge-secondary">No algebra equivavlence</span>
-              <span id="sympy_state" class="badge badge-secondary">No sympy equivavlence</span>
+              <span id="sympy_state" class="badge badge-secondary">No equivavlence</span>
               <span id="sympy_simpler" class="badge badge-secondary"></span>
             </div>
             <div class="col">
@@ -89,15 +87,10 @@
 
   <script>
 
-    var client = new SemanticMathEditor.MathServerClient("http://stran.mobi:9999");
     const sympyClient = new SemanticMathProcessorClient.SympyClient("https://math-processor.math-editor.com");
 
-    var calcState = document.getElementById("calculus_state");
-    var algbState = document.getElementById("algebra_state");
     var sympyState = document.getElementById("sympy_state");
     var sympySimpler = document.getElementById("sympy_simpler");
-    
-
 
     var el1 = document.getElementById("ed1");
     var editor1 = SemanticMathEditor.createEditor(el1, true);
@@ -156,8 +149,6 @@
         var semantic1 = editor1.getSemantic();
         var semantic2 = editor2.getSemantic();
 
-        doCheck(SemanticMathEditor.EquivalencyType.calculus, calcState, "Calculus equivavlence", "No calculus equivavlence");
-        doCheck(SemanticMathEditor.EquivalencyType.algebra, algbState, "Algebra equivavlence", "No algebra equivavlence");
         doSympyCheck(semantic1.semantic, semantic2.semantic);
 
         function doSympyCheck(mn1, mn2) {
@@ -200,32 +191,10 @@
           }
         }
 
-
-        function doCheck(type, elem, mTrue, mFalse) {
-          client.checkEquivalency(SemanticMathEditor.toGRL(semantic1.semantic), SemanticMathEditor.toGRL(semantic2.semantic), type).then(
-            (equiv) => {
-              if (equiv) {
-                setSucessMessage(elem, mTrue);
-              }
-              else {
-                setFailureMessage(elem, mFalse);
-              }
-            }
-          ).catch(
-            (error) => {
-              console.log("ERROR:" + JSON.stringify(error));
-              setFailureMessage(elem, "error. see log for details");
-            }
-          )
-        }
       }
       else {
-        setFailureMessage(calcState, "No calculus equivavlence");
-        setFailureMessage(algbState, "No algebra equivavlence");
-        setFailureMessage(sympyState, "No sympy equivavlence");
+        setFailureMessage(sympyState, "No equivavlence");
         setFailureMessage(sympySimpler, "");
-
-
       }
 
 

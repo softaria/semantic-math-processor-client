@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
-  <meta title="Matharia demo" />
+  <meta title="Semantic Math Processor Client Demo" />
 
   <!--Katex CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
@@ -27,8 +27,8 @@
 <body>
 
   <div class="px-3  mx-auto text-center">
-    <h1 class="display-4">Simpy Client Test page</h1>
-    <p class="lead">Interactive math recognition technology</p>
+    <h1 class="display-4">Semantic Math Processor Client Demo</h1>
+    <p class="lead">Here you can run simplification, calulation and plotting using SymPy</p>
   </div>
 
   <div class="container">
@@ -43,7 +43,7 @@
                 onclick="openKeyboard1();">keyboard</button>
             </div>
           </div>
-          <small id="errors1" class="form-text text-muted">Type math formula here</small>
+          <small id="errors1" class="form-text text-muted">Type math formula here. Press "\" to start a context assistant.</small>
           <br />
           <div class="row">
             <div class="col-md-auto">
@@ -65,7 +65,9 @@
                 onclick="openKeyboard2();">keyboard</button>
             </div>
           </div>
-          <small id="errors2" class="form-text text-muted"></small>
+          <small id="errors2" class="form-text text-muted">The following actions need 2 formulas. Please type the second here.</small>
+          <br />
+
           <div class="row">
             <div class="col-md-auto">
               <button class="btn btn-outline-secondary" type="button" onclick="plot2d_parametric();">Parametric Plot</button>
@@ -79,7 +81,8 @@
             <div id="ed3" class="form-control editor-field auto-height" tabindex="1">
             </div>
           </div>
-          <small id="errors3" class="form-text text-muted"></small>
+          <small id="errors3" class="form-text text-muted">The following actions need 3 formulas. Please type the third here.</small>
+          <br />
           <div class="row">
             <div class="col-md-auto">
               <button class="btn btn-outline-secondary" type="button" onclick="plot3d_parametric_line();">3d Parametric Line Plot</button>
@@ -112,10 +115,10 @@
     </div>
 
   </div>
-
+  
 
   <script>
-    //FIXME:
+
     const sympyClient = new SemanticMathProcessorClient.SympyClient("https://math-processor.math-editor.com");
 
     const el1 = document.getElementById("ed1");
