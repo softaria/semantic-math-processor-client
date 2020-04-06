@@ -15,6 +15,7 @@ jobs:
       with:
         node-version: 12.8.1
     - run: npm install
+    - run: export NODE_ENV="production"
     - run: echo $NODE_ENV
     - run: node node_modules/.bin/webpack
     - run: mkdir distrib
@@ -29,7 +30,4 @@ jobs:
     - run: cd distrib
     - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
     - run: npm publish --dry-run --access=public
-      env:
-        CI: true
-        NODE_ENV: production
 
