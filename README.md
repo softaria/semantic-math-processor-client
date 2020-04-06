@@ -30,9 +30,7 @@ By default it communicates with a MathProcessor installed at https://math-proces
 
 Feel free to [run your own copy of the MathProcessor](https://github.com/softaria/math-processor) and replace its address in testEquiv.html and testSimplify.html with localhost. 
 
-TLDR:
-
-Just run:
+To start your own copy of the MathProcessor just run:
 
 ```
   docker run -d -p "80:5000" softaria/math-processor
