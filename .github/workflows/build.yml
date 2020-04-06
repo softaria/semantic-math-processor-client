@@ -8,13 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Build with node ${NODE_VER}
+    - name: Build with node 
       uses: actions/setup-node@v1
       with:
-        node-version: ${NODE_VER}
+        node-version: 12.8.1
     - run: npm install
     - run: node node_modules/.bin/tsc -p ./tsconfig.json
     - run: npm run test-ci
     - run: node node_modules/.bin/webpack
-      env:
-        NODE_VER: 12.8.1
