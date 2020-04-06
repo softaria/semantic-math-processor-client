@@ -144,7 +144,7 @@ class SympyOpenSquared extends SympyServiceToken {
 
 
 
-//FIXME: do not parse within '' !!!!
+
 class SympyParser {
 
   private readonly stack: SympyBaseToken[] = [];
