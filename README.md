@@ -6,7 +6,7 @@ Being a plugin for SemanticMathEditor it allows processing math formula created 
 
 As a result you have online web editor, which can do things like integration, taking derivatives, calculating limits, creating plots, comparing if two math expressions are equivalent and so on.
 
-# How to try
+# How to try it
 
 1. Checkout the project
 1. Ensure you have [npm](https://www.npmjs.com/get-npm)
