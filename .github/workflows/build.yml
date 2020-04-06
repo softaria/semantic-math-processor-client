@@ -1,0 +1,34 @@
+name: Build
+on: 
+  push:
+    branches:    
+      - 'release-**'  
+    paths-ignore:
+      - 'README.md'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Build with node ${NODE_VER}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${NODE_VER}
+    - run: npm install
+    - run: node node_modules/.bin/webpack
+    - run: mkdir distrib
+    - run: RELEASE_VERSION_NUMBER="$(echo $GITHUB_BASE_REF | cut -c9-)";
+    - run: echo ${RELEASE_VERSION_NUMBER}
+    - run: sed -i -e 's|<version>|'$RELEASE_VERSION_NUMBER'|g' dist-package.json
+    # copy all staff to matheditordistrib
+    - run: cp dist/* distrib/
+    - run: cp tsOutputs/src/*.d.ts distrib/
+    - run: cp dist-package.json distrib/package.json
+    - run: cp README.md distrib/README.md
+    - run: cd distrib
+    - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
+    - run: npm publish --dry-run --access=public
+      env:
+        CI: true
+        NODE_ENV: production
+        NODE_VER: 12.8.1

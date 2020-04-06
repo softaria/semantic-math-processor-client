@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+  <meta title="Matharia demo" />
+
+  <!--Katex CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+    integrity="sha256-uT5rNa8r/qorzlARiO7fTBE7EWQiX/umLlXsq7zyQP8=" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <script src="node_modules/semantic-math-editor/index.bundle.js"></script>
+  <script src="dist/index.bundle.js"></script>
+  <style>
+    .auto-height {
+      height: auto !important;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="px-3 pt-md-5 mx-auto text-center">
+    <h1 class="display-4">Simpy Client Test page</h1>
+    <p class="lead">Interactive math recognition technology</p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              <form>
+                <div class="input-group mb-3" aria-label="Editor 1">
+                  <div id="ed1" class="form-control editor-field auto-height" tabindex="1"
+                    ontouchstart="openKeyboard1();"></div>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary full-height" type="button"
+                      onclick="openKeyboard1();">keyboard</button>
+                  </div>
+                </div>
+                <small id="errors1" class="form-text text-muted">Type math formula here</small>
+                <br />
+                <div class="input-group mb-3" aria-label="Editor 2">
+                  <div id="ed2" class="form-control editor-field auto-height" tabindex="1"
+                    ontouchstart="openKeyboard2();"></div>
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary full-height" type="button"
+                      onclick="openKeyboard2();">keyboard</button>
+                  </div>
+                </div>
+                <small id="errors2" class="form-text text-muted">Or here</small>
+              </form>
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-auto">
+              <span id="calculus_state" class="badge badge-secondary">No calculus equivavlence</span>
+              <span id="algebra_state" class="badge badge-secondary">No algebra equivavlence</span>
+              <span id="sympy_state" class="badge badge-secondary">No sympy equivavlence</span>
+              <span id="sympy_simpler" class="badge badge-secondary"></span>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-md-auto">
+              <button class="btn btn-outline-secondary" type="button" onclick="checkEquivalence();">Check
+                equivalence</button>
+            </div>
+            <div class="col">
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+
+    var client = new SemanticMathEditor.MathServerClient("http://stran.mobi:9999");
+    const sympyClient = new SemanticMathEditorSympy.SympyClient("https://math-processor.math-editor.com");
+
+    var calcState = document.getElementById("calculus_state");
+    var algbState = document.getElementById("algebra_state");
+    var sympyState = document.getElementById("sympy_state");
+    var sympySimpler = document.getElementById("sympy_simpler");
+    
+
+
+    var el1 = document.getElementById("ed1");
+    var editor1 = SemanticMathEditor.createEditor(el1, true);
+
+    var el2 = document.getElementById("ed2");
+    var editor2 = SemanticMathEditor.createEditor(el2, true);
+
+    var validation1 = SemanticMathEditor.setupDefaultErrorDecoration(
+      editor1,
+      document.getElementById("errors1"),
+      {
+        noErrorsHtml: "Type math formula here"
+      });
+
+    var validation2 = SemanticMathEditor.setupDefaultErrorDecoration(
+      editor2,
+      document.getElementById("errors2"),
+      {
+        noErrorsHtml: "Type math formula here"
+      });
+
+
+
+    function openKeyboard1() {
+      SemanticMathEditor.showKeyboard(editor1);
+    }
+    function openKeyboard2() {
+      SemanticMathEditor.showKeyboard(editor2);
+    }
+
+    function setSucessMessage(elem, mes) {
+      elem.classList.remove('badge-secondary');
+      elem.classList.add('badge-success');
+      elem.innerHTML = mes;
+    }
+
+    function setFailureMessage(elem, mes) {
+      elem.classList.remove('badge-success');
+      elem.classList.add('badge-secondary');
+      elem.innerHTML = mes;
+    }
+
+    function checkEquivalence() {
+
+      var hasErrors = false;
+
+      if (!validation1()) {
+        hasErrors = true;
+      }
+
+      if (!validation2()) {
+        hasErrors = true;
+      }
+
+      if (!hasErrors) {
+        var semantic1 = editor1.getSemantic();
+        var semantic2 = editor2.getSemantic();
+
+        doCheck(SemanticMathEditor.EquivalencyType.calculus, calcState, "Calculus equivavlence", "No calculus equivavlence");
+        doCheck(SemanticMathEditor.EquivalencyType.algebra, algbState, "Algebra equivavlence", "No algebra equivavlence");
+        doSympyCheck(semantic1.semantic, semantic2.semantic);
+
+        function doSympyCheck(mn1, mn2) {
+          const e1 = sympyClient.prepareCompute(mn1);
+          const e2 = sympyClient.prepareCompute(mn2);
+
+          if (e1 instanceof SemanticMathEditorSympy.PreparedSympyCall && e2 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+            sympyClient.checkEquivalence(e1, e2).then(
+              (equiv) => {
+                if (equiv.eq != 'different') {
+                  setSucessMessage(sympyState, "Sympy equivavlence: "+equiv.eq);
+                }
+                else {
+                  setFailureMessage(sympyState, "No Sympy equivavlence");
+                }
+
+                if (equiv.si == "none" || equiv.si == "unknown") {
+                  setFailureMessage(sympySimpler, "");
+                }
+                else {
+                  if(equiv.si == "first") {
+                    setSucessMessage(sympySimpler, "Sympy: first expression is simpler");
+                  }
+                  else {
+                    setSucessMessage(sympySimpler, "Sympy: second expression is simpler");
+                  }
+                  
+                }
+
+              }
+            ).catch(
+              (error) => {
+                console.log("ERROR:" + JSON.stringify(error));
+                setFailureMessage(sympyState, "error. see log for details");
+              }
+            );
+          }
+          else {
+            setFailureMessage(sympyState, "Can't convert to sympy");
+          }
+        }
+
+
+        function doCheck(type, elem, mTrue, mFalse) {
+          client.checkEquivalency(SemanticMathEditor.toGRL(semantic1.semantic), SemanticMathEditor.toGRL(semantic2.semantic), type).then(
+            (equiv) => {
+              if (equiv) {
+                setSucessMessage(elem, mTrue);
+              }
+              else {
+                setFailureMessage(elem, mFalse);
+              }
+            }
+          ).catch(
+            (error) => {
+              console.log("ERROR:" + JSON.stringify(error));
+              setFailureMessage(elem, "error. see log for details");
+            }
+          )
+        }
+      }
+      else {
+        setFailureMessage(calcState, "No calculus equivavlence");
+        setFailureMessage(algbState, "No algebra equivavlence");
+        setFailureMessage(sympyState, "No sympy equivavlence");
+        setFailureMessage(sympySimpler, "");
+
+
+      }
+
+
+    }
+  </script>
+
+</body>
+
+</html>

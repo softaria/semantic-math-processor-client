@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+  <meta title="Matharia demo" />
+
+  <!--Katex CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css"
+    integrity="sha256-uT5rNa8r/qorzlARiO7fTBE7EWQiX/umLlXsq7zyQP8=" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+  <script src="node_modules/semantic-math-editor/index.bundle.js"></script>
+  <script src="dist/index.bundle.js"></script>
+  <style>
+    .auto-height {
+      height: auto !important;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="px-3  mx-auto text-center">
+    <h1 class="display-4">Simpy Client Test page</h1>
+    <p class="lead">Interactive math recognition technology</p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <form>
+          <div class="input-group mb-3" aria-label="Editor 1">
+            <div id="ed1" class="form-control editor-field auto-height" tabindex="1" ontouchstart="openKeyboard1();">
+            </div>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary full-height" type="button"
+                onclick="openKeyboard1();">keyboard</button>
+            </div>
+          </div>
+          <small id="errors1" class="form-text text-muted">Type math formula here</small>
+          <br />
+          <div class="row">
+            <div class="col-md-auto">
+              <button class="btn btn-outline-secondary" type="button" onclick="simplify();">Simplify</button>
+              <button class="btn btn-outline-secondary" type="button" onclick="compute();">Compute</button>
+              <button class="btn btn-outline-secondary" type="button" onclick="mirror();">Mirror</button>
+              <button class="btn btn-outline-secondary" type="button" onclick="latex();">As Latex</button>
+              <button class="btn btn-outline-secondary" type="button" onclick="plot();">Plot</button>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <br />
+          <div class="input-group mb-3" aria-label="Editor 2">
+            <div id="ed2" class="form-control editor-field auto-height" tabindex="1" ontouchstart="openKeyboard2();">
+            </div>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary full-height" type="button"
+                onclick="openKeyboard2();">keyboard</button>
+            </div>
+          </div>
+          <small id="errors2" class="form-text text-muted"></small>
+          <div class="row">
+            <div class="col-md-auto">
+              <button class="btn btn-outline-secondary" type="button" onclick="plot2d_parametric();">Parametric Plot</button>
+              <button class="btn btn-outline-secondary" type="button" onclick="plot3d();">Plot3d</button>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+          <br />
+          <div class="input-group mb-3" aria-label="Editor 3">
+            <div id="ed3" class="form-control editor-field auto-height" tabindex="1">
+            </div>
+          </div>
+          <small id="errors3" class="form-text text-muted"></small>
+          <div class="row">
+            <div class="col-md-auto">
+              <button class="btn btn-outline-secondary" type="button" onclick="plot3d_parametric_line();">3d Parametric Line Plot</button>
+              <button class="btn btn-outline-secondary" type="button" onclick="plot3d_parametric_surface();">3d Parametric Surface Plot</button>
+            </div>
+            <div class="col">
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div id="latex">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <div id="renderedLatex">
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col">
+        <div id="plot">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script>
+    //FIXME:
+    const sympyClient = new SemanticMathEditorSympy.SympyClient("https://math-processor.math-editor.com");
+
+    const el1 = document.getElementById("ed1");
+    const editor1 = SemanticMathEditor.createEditor(el1, true);
+
+    const el2 = document.getElementById("ed2");
+    const editor2 = SemanticMathEditor.createEditor(el2, true);
+
+    const el3 = document.getElementById("ed3");
+    const editor3 = SemanticMathEditor.createEditor(el3, true);
+
+    const validation = SemanticMathEditor.setupDefaultErrorDecoration(
+      editor1,
+      document.getElementById("errors1"),
+      {
+        noErrorsHtml: "Type math formula here"
+      });
+
+    const validation2 = SemanticMathEditor.setupDefaultErrorDecoration(
+      editor2,
+      document.getElementById("errors2"),
+      {
+        noErrorsHtml: ""
+      });
+
+    const validation3 = SemanticMathEditor.setupDefaultErrorDecoration(
+      editor3,
+      document.getElementById("errors3"),
+      {
+        noErrorsHtml: ""
+      });
+
+    function openKeyboard1() {
+      SemanticMathEditor.showKeyboard(editor1);
+    }
+    function openKeyboard2() {
+      SemanticMathEditor.showKeyboard(editor2);
+    }
+
+
+    function simplify() {
+
+      if (validation()) {
+        const semantic = editor1.getSemantic().semantic;
+        const e = sympyClient.prepareCompute(semantic);
+        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          sympyClient.simplify(e).then(
+            (simplified) => {
+              editor2.setTree(simplified);
+            }
+          ).catch(
+            (error) => {
+              console.log("ERROR:" + JSON.stringify(error));
+              alert("Sympy error. See log for details");
+            }
+          );
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+
+    function compute() {
+
+      if (validation()) {
+        const semantic = editor1.getSemantic().semantic;
+        const e = sympyClient.prepareCompute(semantic);
+        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          sympyClient.compute(e).then(
+            (simplified) => {
+              editor2.setTree(simplified);
+            }
+          ).catch(
+            (error) => {
+              console.log("ERROR:" + JSON.stringify(error));
+              alert("Sympy error. See log for details");
+            }
+          );
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+
+
+    function mirror() {
+
+      if (validation()) {
+        const semantic = editor1.getSemantic().semantic;
+        const e = sympyClient.prepareCompute(semantic);
+        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          sympyClient.mirror(e).then(
+            (simplified) => {
+              editor2.setTree(simplified);
+            }
+          ).catch(
+            (error) => {
+              console.log("ERROR:" + JSON.stringify(error));
+              alert("Sympy error. See log for details");
+            }
+          );
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+
+    function latex() {
+
+      if (validation()) {
+        const semantic = editor1.getSemantic().semantic;
+        const e = sympyClient.prepareCompute(semantic);
+        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          sympyClient.latex(e).then(
+            (ltx) => {
+              document.getElementById("latex").innerHTML = ltx;
+
+              const renderedLatex = SemanticMathEditor.latex.renderLatex(ltx);
+
+              document.getElementById("renderedLatex").innerHTML = renderedLatex;
+            }
+          ).catch(
+            (error) => {
+              console.log("ERROR:" + JSON.stringify(error));
+              alert("Sympy error. See log for details");
+            }
+          );
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+
+    function plot() {
+
+      if (validation()) {
+        const semantic = editor1.getSemantic().semantic;
+        const e = sympyClient.prepareCompute(semantic);
+        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          const el = document.getElementById("plot");
+          el.innerHTML = "";
+          let exps = [e];
+
+          if (validation2()) {
+            const semantic2 = editor2.getSemantic().semantic;
+            const e2 = sympyClient.prepareCompute(semantic2);
+            if (e2 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+              exps.push(e2);
+            }
+          }
+
+
+          const img = sympyClient.plot2d(exps, true, (err) => {
+            el.innerHTML = "";
+            alert(err.message);
+          }, undefined, { "ylim": [-20, 20] });
+          el.appendChild(img);
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+
+    function plot3d() {
+
+      if (validation()) {
+        const semantic = editor1.getSemantic().semantic;
+        const e = sympyClient.prepareCompute(semantic);
+        if (e instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          const el = document.getElementById("plot");
+          el.innerHTML = "";
+
+          let exps = [e];
+
+          if (validation2()) {
+            const semantic2 = editor2.getSemantic().semantic;
+            const e2 = sympyClient.prepareCompute(semantic2);
+            if (e2 instanceof MathEditorSympy.PreparedSympyCall) {
+              exps.push(e2);
+            }
+          }
+
+          const img = sympyClient.plot3d(exps, false, (err) => {
+            el.innerHTML = "";
+            alert(err.message);
+          });
+          el.appendChild(img);
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+
+    function plot2d_parametric() {
+
+      if (validation() && validation2()) {
+        const semantic = editor1.getSemantic().semantic;
+        const e1 = sympyClient.prepareCompute(semantic);
+        const semantic2 = editor2.getSemantic().semantic;
+        const e2 = sympyClient.prepareCompute(semantic2);
+
+
+        if (e1 instanceof SemanticMathEditorSympy.PreparedSympyCall && e2 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          const el = document.getElementById("plot");
+          el.innerHTML = "";
+
+          const img = sympyClient.plot2d_parametric([{ x: e1, y: e2 }], false, (err) => {
+            el.innerHTML = "";
+            alert(err.message);
+          });
+          el.appendChild(img);
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+    function plot3d_parametric_line() {
+
+      if (validation() && validation2() && validation3()) {
+        const semantic1 = editor1.getSemantic().semantic;
+        const e1 = sympyClient.prepareCompute(semantic1);
+        const semantic2 = editor2.getSemantic().semantic;
+        const e2 = sympyClient.prepareCompute(semantic2);
+        const semantic3 = editor3.getSemantic().semantic;
+        const e3 = sympyClient.prepareCompute(semantic3);
+
+        const vars = SemanticMathEditorSympy.getAllVariablesFromNodes([semantic1, semantic2, semantic3]);
+
+        if(vars.length!=1) {
+          alert("All threee expressions must contain exactly one variable");
+          return;
+        }
+
+        const interval = sympyClient.preparePlotInterval(vars[0], -10, 10);
+
+        if (e1 instanceof SemanticMathEditorSympy.PreparedSympyCall && e2 instanceof SemanticMathEditorSympy.PreparedSympyCall && e3 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          const el = document.getElementById("plot");
+          el.innerHTML = "";
+
+          const img = sympyClient.plot3d_parametric_line([{ x: e1, y: e2, z: e3, interval: interval }], false, (err) => {
+            el.innerHTML = "";
+            alert(err.message);
+          });
+          el.appendChild(img);
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+
+    function plot3d_parametric_surface() {
+
+      if (validation() && validation2() && validation3()) {
+        const semantic1 = editor1.getSemantic().semantic;
+        const e1 = sympyClient.prepareCompute(semantic1);
+        const semantic2 = editor2.getSemantic().semantic;
+        const e2 = sympyClient.prepareCompute(semantic2);
+        const semantic3 = editor3.getSemantic().semantic;
+        const e3 = sympyClient.prepareCompute(semantic3);
+
+        const vars = SemanticMathEditorSympy.getAllVariablesFromNodes([semantic1, semantic2, semantic3]);
+
+        if(vars.length!=2) {
+          alert("The number of variables within the expressions must be 2");
+          return;
+        }
+
+        const interval1 = sympyClient.preparePlotInterval(vars[0], -10, 10);
+        const interval2 = sympyClient.preparePlotInterval(vars[1], -10, 10);
+
+        if (e1 instanceof SemanticMathEditorSympy.PreparedSympyCall && e2 instanceof SemanticMathEditorSympy.PreparedSympyCall && e3 instanceof SemanticMathEditorSympy.PreparedSympyCall) {
+          const el = document.getElementById("plot");
+          el.innerHTML = "";
+
+          const img = sympyClient.plot3d_parametric_surface([{ x: e1, y: e2, z: e3, r_u: interval1,r_v:interval2 }], false, (err) => {
+            el.innerHTML = "";
+            alert(err.message);
+          });
+          el.appendChild(img);
+        }
+        else {
+          alert("Can't convert the expression to sympy");
+        }
+      }
+    }
+
+    
+  </script>
+
+</body>
+
+</html>

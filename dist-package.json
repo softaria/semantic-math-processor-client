@@ -1,0 +1,11 @@
+{
+  "name": "semantic-math-editor-sympy",
+  "version": "<version>",
+  "main": "index.bundle.js",
+  "types": "index.d.ts",
+
+  "peerDependencies": {
+    "semantic-math-editor": "^1.20.4"
+  }
+
+}
