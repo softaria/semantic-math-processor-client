@@ -18,7 +18,7 @@ jobs:
     - run: echo $NODE_ENV
     - run: node node_modules/.bin/webpack
     - run: mkdir distrib
-    - run: RELEASE_VERSION_NUMBER="$(echo $GITHUB_BASE_REF | cut -c9-)";
+    - run: RELEASE_VERSION_NUMBER="$(echo $BRANCH_NAME | cut -c9-)";
     - run: echo ${RELEASE_VERSION_NUMBER}
     - run: sed -i -e 's|<version>|'$RELEASE_VERSION_NUMBER'|g' dist-package.json
     # copy all staff to distrib
@@ -31,4 +31,4 @@ jobs:
     - run: npm publish --dry-run --access=public
     env:
       NODE_ENV: production    
-      BRANCH_NAME: ${{ github.base_ref }}
+      BRANCH_NAME: ${{ github.ref }}

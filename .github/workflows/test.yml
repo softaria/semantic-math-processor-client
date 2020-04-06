@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: 12.8.1
     - run: echo '123'
-    - run: echo $GITHUB_BASE_REF
+    - run: echo $GITHUB_REF
     - run: echo $BRANCH_NAME    
     - run: echo $BRANCH_NAME | cut -c9-
     - run: echo $SERVER
