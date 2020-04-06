@@ -28,7 +28,7 @@ node node_modules/.bin/webpack
 
 By default it communicates with a MathProcessor installed at https://math-processor.math-editor.com
 
-Feel free to [run your own copy of the MathProcessor](https://github.com/softaria/math-processor) and replace its address in testEquiv.html and testSimplify.html with localhost. 
+Feel free to run your own copy of the [MathProcessor](https://github.com/softaria/math-processor) and replace its address in testEquiv.html and testSimplify.html with localhost. 
 
 To start your own copy of the MathProcessor just run:
 
