@@ -27,3 +27,7 @@ node node_modules/.bin/webpack
 ```
 npm i semantic-math-processor-client
 ```
+
+# See it in action
+
+https://math-editor.com/integrationsDemo.html
