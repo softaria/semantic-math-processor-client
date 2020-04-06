@@ -9,12 +9,10 @@ As a result you have online web editor, which can do things like integration, ta
 # How to try
 
 1. Checkout the project
-2. Run 
+1. Ensure you have [npm](https://www.npmjs.com/get-npm)
+2. Run following commands
 ```
 npm install
-```
-3. Build it with
-```
 node node_modules/.bin/webpack
 ```
 
