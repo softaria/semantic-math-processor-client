@@ -37,6 +37,6 @@ jobs:
         #publish to NPM 
         cd distrib
         echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
-        npm publish --dry-run --access=public
+        npm publish --access=public
     env:
       NODE_ENV: development
