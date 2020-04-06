@@ -16,7 +16,7 @@ jobs:
         node-version: 12.8.1
     - run: npm install
     - run: echo $NODE_ENV
-    - run: node node_modules/.bin/webpack
+    - run: export NODE_ENV="production";echo $NODE_ENV; node node_modules/.bin/webpack
     - run: mkdir distrib
     - run: RELEASE_VERSION_NUMBER="$(echo $GITHUB_REF | cut -c19-)";
     - run: echo ${RELEASE_VERSION_NUMBER}
@@ -30,4 +30,4 @@ jobs:
     - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_AUTH_TOKEN }}" > .npmrc
     - run: npm publish --dry-run --access=public
     env:
-      NODE_ENV: production    
+      NODE_ENV: development
