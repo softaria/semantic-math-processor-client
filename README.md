@@ -26,7 +26,7 @@ node node_modules/.bin/webpack
 
 4. Open testEquiv.html and testSimplify.html in you browser (do not move the html files - open them in place)
 
-By default it communicates with a MathProcessor installed at https://math-processor.math-editor.com
+By default it communicates with our copy of the MathProcessor installed at https://math-processor.math-editor.com
 
 Feel free to run your own copy of the [MathProcessor](https://github.com/softaria/math-processor) and replace its address in testEquiv.html and testSimplify.html with your host name or localhost. 
 
