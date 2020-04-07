@@ -8,7 +8,7 @@
   "excludeProtected":true,
   "categoryOrder": ["API", "*"],
   "defaultCategory": "internal",
-  "readme": "./TYPEDOC.MD",
+  "readme": "./TYPEDOC.md",
   "exclude": "test/*.**",
   "name":"Semantic Math Processor Client"
  
