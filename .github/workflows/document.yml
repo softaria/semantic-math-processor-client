@@ -1,0 +1,27 @@
+name: Document
+on: 
+  push:
+    branches:
+      - '**'
+    paths-ignore:
+      - 'README.md'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Document with typedoc
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.8.1
+    - run: npm install
+    - run: npx typedoc
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "Typedoc"
+        git commit -m "Add changes" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}    

@@ -15,5 +15,4 @@ jobs:
       with:
         node-version: 12.8.1
     - run: npm install
-    - run: npx typedoc
     - run: node node_modules/.bin/webpack
