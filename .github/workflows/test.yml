@@ -1,4 +1,4 @@
-name: Build
+name: Test
 on: 
   push:
     branches:
@@ -6,14 +6,14 @@ on:
     paths-ignore:
       - 'README.md'
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Build with node 
+    - name: Tests with node
       uses: actions/setup-node@v1
       with:
         node-version: 12.8.1
     - run: npm install
-    - run: npx typedoc
-    - run: node node_modules/.bin/webpack
+    - run: node node_modules/.bin/tsc -p ./tsconfig.json
+    - run: npm run test-ci
