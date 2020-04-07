@@ -88,8 +88,9 @@ else {
   alert("Can't convert the expression to sympy");
 }
 ```
+# Detailed documentation
 
-[See detailed docs](modules/_index_.html)
+Look [here](modules/_index_.html)
 
 
 
