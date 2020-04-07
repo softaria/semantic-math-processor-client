@@ -1,6 +1,6 @@
 # semantic-math-processor-client
 
-[![Test](https://github.com/softaria/semantic-math-processor-client/workflows/Test/badge.svg)](actions?query=workflow%3ATest)
+[![Test](https://github.com/softaria/semantic-math-processor-client/workflows/Test/badge.svg)](/actions?query=workflow%3ATest)
 [![npm](https://img.shields.io/npm/v/semantic-math-processor-client)](https://www.npmjs.com/package/semantic-math-processor-client)
 
 
