@@ -1,3 +1,8 @@
+
+/**
+ * @hidden
+ * @packageDocumentation
+ */
 import { SympyToken, SympyStringify } from "./sympy-parser";
 
 /**

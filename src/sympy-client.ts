@@ -1,3 +1,7 @@
+/**
+ * @hidden
+ * @packageDocumentation
+ */
 
 import { SympyStringify, parseSympyExpression, SympyToken } from "./sympy-parser";
 import { SympyRESTClient } from "./sympy-rest-client";

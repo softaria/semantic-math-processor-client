@@ -1,6 +1,7 @@
 {
+  "inputFiles":["./src/index.ts"],
   "out": "docs",
-  "mode":"modules",
+  "mode":"library",
   "excludeExternals": true,
   "excludeNotExported":true,
   "excludePrivate":true,
@@ -8,6 +9,7 @@
   "categoryOrder": ["API", "*"],
   "defaultCategory": "internal",
   "readme": "none",
-  "exclude": "test/*.**"
-  
+  "exclude": "test/*.**",
+  "name":"Semantic Math Processor Client"
+ 
 }
