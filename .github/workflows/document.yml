@@ -17,7 +17,7 @@ jobs:
     - run: npm install
     - run: rm -r docs
     - run: npx typedoc
-    - run: touch .nojekyll
+    - run: touch docs/.nojekyll
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
