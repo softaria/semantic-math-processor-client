@@ -69,9 +69,9 @@
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
 						<p>When calling the async methods of sympy clients, catch this error.
-							It will be thrown when sympy was able to proceed your request, but we was not able to understand it.
+							It will be thrown when sympy was able to proceed your request, but we was not able to understand its respond.
 							Probably we should support some yet unsupported Sympy construction
-						You should also be able to get latex from Sympy for the cinstruction returned</p>
+						You should also be able to get latex from Sympy for the construction returned (as we do not have to understand it in this case)</p>
 					</div>
 				</div>
 			</section>
@@ -93,18 +93,11 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_index_.unsupportedsympyconstruction.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_index_.unsupportedsympyconstruction.html#message" class="tsd-kind-icon">message</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite"><a href="_index_.unsupportedsympyconstruction.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_index_.unsupportedsympyconstruction.html#stack" class="tsd-kind-icon">stack</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_index_.unsupportedsympyconstruction.html#wholeexpression" class="tsd-kind-icon">whole<wbr>Expression</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="_index_.unsupportedsympyconstruction.html#error" class="tsd-kind-icon">Error</a></li>
 							</ul>
 						</section>
@@ -115,35 +108,6 @@
 							</ul>
 						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Unsupported<wbr>Sympy<wbr>Construction<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_index_.unsupportedsympyconstruction.html" class="tsd-signature-type">UnsupportedSympyConstruction</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/model.ts#L49">src/model.ts:49</a></li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>name: <span class="tsd-signature-type">string</span></h5>
-								</li>
-								<li>
-									<h5>message: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_index_.unsupportedsympyconstruction.html" class="tsd-signature-type">UnsupportedSympyConstruction</a></h4>
-						</li>
-					</ul>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
@@ -166,9 +130,14 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="_index_.sympyerror.html">SympyError</a>.<a href="_index_.sympyerror.html#name">name</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/model.ts#L48">src/model.ts:48</a></li>
+							<li>Defined in src/model.ts:72</li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of unsupported construction</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 					<a name="stack" class="tsd-anchor"></a>
@@ -178,16 +147,6 @@
 						<p>Inherited from <a href="_index_.sympyerror.html">SympyError</a>.<a href="_index_.sympyerror.html#stack">stack</a></p>
 						<ul>
 							<li>Defined in node_modules/typescript/lib/lib.es5.d.ts:975</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="wholeexpression" class="tsd-anchor"></a>
-					<h3>whole<wbr>Expression</h3>
-					<div class="tsd-signature tsd-kind-icon">whole<wbr>Expression<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SympyToken</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/model.ts#L49">src/model.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -214,7 +173,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/model.ts#L59">src/model.ts:59</a></li>
+									<li>Defined in src/model.ts:89</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a></h4>
@@ -271,9 +230,6 @@
 					<li class="current tsd-kind-class tsd-parent-kind-module">
 						<a href="_index_.unsupportedsympyconstruction.html" class="tsd-kind-icon">Unsupported<wbr>Sympy<wbr>Construction</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_index_.unsupportedsympyconstruction.html#constructor" class="tsd-kind-icon">constructor</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_index_.unsupportedsympyconstruction.html#message" class="tsd-kind-icon">message</a>
 							</li>
@@ -282,9 +238,6 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
 								<a href="_index_.unsupportedsympyconstruction.html#stack" class="tsd-kind-icon">stack</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_index_.unsupportedsympyconstruction.html#wholeexpression" class="tsd-kind-icon">whole<wbr>Expression</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
 								<a href="_index_.unsupportedsympyconstruction.html#error" class="tsd-kind-icon">Error</a>
@@ -296,24 +249,6 @@
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getallvariables" class="tsd-kind-icon">get<wbr>All<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getallvariablesfromnodes" class="tsd-kind-icon">get<wbr>All<wbr>Variables<wbr>From<wbr>Nodes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getanyvariable" class="tsd-kind-icon">get<wbr>Any<wbr>Variable</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getanyvariablefromnodes" class="tsd-kind-icon">get<wbr>Any<wbr>Variable<wbr>From<wbr>Nodes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getsympytrigname" class="tsd-kind-icon">get<wbr>Sympy<wbr>Trig<wbr>Name</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#unquote" class="tsd-kind-icon">unquote</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

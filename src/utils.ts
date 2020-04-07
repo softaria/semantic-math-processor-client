@@ -4,6 +4,9 @@
  */
 import { MathTrigonometryType, MathStructure, MathVariable, traverseStructures, MathNodeName, MathNodePrinter, acceptMathNode } from "semantic-math-editor";
 
+/**
+ * @hidden
+ */
 export function unquote(s: string): string {
   if (s.startsWith("'") && s.endsWith("'")) {
     return s.substring(1, s.length - 1);
@@ -13,6 +16,9 @@ export function unquote(s: string): string {
   }
 }
 
+/**
+ * @hidden
+ */
 export function getSympyTrigName(trig: MathTrigonometryType): string {
   switch (trig) {
     case MathTrigonometryType.sin:
@@ -73,7 +79,10 @@ export function getSympyTrigName(trig: MathTrigonometryType): string {
       throw new Error("Unsopported trigonometric function:" + trig);
   }
 }
-                 
+  
+/**
+ * @hidden
+ */
 export function getAnyVariableFromNodes(nodes: MathStructure[]): MathVariable | undefined {
   for(const n of nodes) {
     const v = getAnyVariable(n);
@@ -82,7 +91,10 @@ export function getAnyVariableFromNodes(nodes: MathStructure[]): MathVariable | 
     }
   }
 }
-                
+ 
+/**
+ * @hidden
+ */
 export function getAllVariablesFromNodes(nodes: MathStructure[]): MathVariable[] {
   const ret = new Map<string,MathVariable>();
   for(const n of nodes) {
@@ -91,6 +103,9 @@ export function getAllVariablesFromNodes(nodes: MathStructure[]): MathVariable[]
   return [ ...ret.values() ]
 }
 
+/**
+ * @hidden
+ */
 export function getAnyVariable(node: MathStructure): MathVariable | undefined {
   let ret: MathVariable | undefined;
   traverseStructures(node, (s) => {
@@ -101,6 +116,9 @@ export function getAnyVariable(node: MathStructure): MathVariable | undefined {
   return ret;
 }
 
+/**
+ * @hidden
+ */
 export function getAllVariables(node: MathStructure,addTo?:Map<string,MathVariable>): Map<string,MathVariable>{
   const vars = addTo?addTo:new Map<string,MathVariable>();
 

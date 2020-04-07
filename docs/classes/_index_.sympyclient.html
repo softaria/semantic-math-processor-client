@@ -67,6 +67,9 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A client for <a href="https://github.com/softaria/math-processor">MathProcessor</a> - simple REST service around <a href="https://sympy.org">sympy</a></p>
+					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
@@ -124,16 +127,69 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L56">src/sympy-client.ts:56</a></li>
+									<li>Defined in src/sympy-client.ts:60</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>serverAddress: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>http(s) address of the <a href="https://github.com/softaria/math-processor">MathProcessor</a> to call</p>
+										</div>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> http: <span class="tsd-signature-type">HttpClient</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>HttpClient. No need to pass it when use from browser.
+											if use not from broswer you need to implement semantic-math-editor&#39;s HttpClient interface as following:</p>
+											<pre><code>   export <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">HttpClient</span> {</span>
+      requestAsync&lt;Request, Response&gt;(<span class="hljs-string">method:</span> <span class="hljs-string">'GET'</span> | <span class="hljs-string">'POST'</span>, <span class="hljs-string">url:</span> string, content?: Request, callback?: (<span class="hljs-string">response:</span> Response) =&gt; <span class="hljs-keyword">void</span>, errorCallback?: (<span class="hljs-string">err:</span> any) =&gt; <span class="hljs-keyword">void</span>): <span class="hljs-keyword">void</span>;
+   }</code></pre><p>For your convinience here is the anxious based implementation:</p>
+											<details>
+												<summary> Click to expand</summary>
+												<pre><code>
+ <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AxiousBasedHttpClient</span> <span class="hljs-title">implements</span> <span class="hljs-title">HttpClient</span> {</span>
+  requestAsync&lt;Request, Response&gt;(<span class="hljs-name">method</span>: <span class="hljs-string">"GET"</span> | <span class="hljs-string">"POST"</span>,
+                                  <span class="hljs-name">url</span>: <span class="hljs-built_in">string</span>,
+                                  content?: Request,
+                                  callback?: <span class="hljs-function"><span class="hljs-params">(response: Response)</span> =&gt;</span> void,
+                                  errorCallback?: <span class="hljs-function"><span class="hljs-params">(err: any)</span> =&gt;</span> void
+                                  ): void {
+   <span class="hljs-keyword">switch</span> (method) {
+     case <span class="hljs-string">"GET"</span>:
+       axios.get(url).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
+         callback(result.data);
+       }).catch(<span class="hljs-function"><span class="hljs-params">(<span class="hljs-built_in">error</span>)</span> =&gt;</span> {
+         console.log(<span class="hljs-string">"ERROR:"</span> + JSON.stringify(<span class="hljs-built_in">error</span>));
+         errorCallback(<span class="hljs-built_in">error</span>);
+       });
+       <span class="hljs-keyword">break</span>;
+     case <span class="hljs-string">"POST"</span>:
+       let axiosConfig = {
+         <span class="hljs-name">headers</span>: {
+           <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json;charset=UTF-8'</span>,
+           <span class="hljs-string">"Access-Control-Allow-Origin"</span>: <span class="hljs-string">"*"</span>,
+         }
+       };
+       axios.post(url, content, axiosConfig).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(result)</span> =&gt;</span> {
+         callback(result.data);
+       }).catch(<span class="hljs-function"><span class="hljs-params">(<span class="hljs-built_in">error</span>)</span> =&gt;</span> {
+         console.log(<span class="hljs-string">"ERROR:"</span> + JSON.stringify(<span class="hljs-built_in">error</span>));
+         errorCallback(<span class="hljs-built_in">error</span>);
+       });
+       <span class="hljs-keyword">break</span>;
+   }
+  }
+}
+</code></pre></details>
+										</div>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_index_.sympyclient.html" class="tsd-signature-type">SympyClient</a></h4>
@@ -153,19 +209,40 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L103">src/sympy-client.ts:103</a></li>
+									<li>Defined in src/sympy-client.ts:171</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Checks if two passed expressions are equivalent
+									Look at <a href="../enums/_index_.equiv.html">Equiv</a> and <a href="../enums/_index_.simpler.html">Simpler</a> for details.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p><a href="_index_.sympyerror.html">SympyError</a></p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p><a href="_index_.unsupportedsympyconstruction.html">UnsupportedSympyConstruction</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>exp1: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the result of <a href="_index_.sympyclient.html#preparecompute">prepareCompute</a></p>
+									</div>
 								</li>
 								<li>
 									<h5>exp2: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the result of <a href="_index_.sympyclient.html#preparecompute">prepareCompute</a></p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="_index_.equivresponse.html" class="tsd-signature-type">EquivResponse</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>an information if the expressions are eqivalent and which one is simpler</p>
 						</li>
 					</ul>
 				</section>
@@ -179,16 +256,16 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L113">src/sympy-client.ts:113</a></li>
+									<li>Defined in src/sympy-client.ts:182</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Returns the result of sympy .doit() method on the provided expression.</p>
-								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>{SympyError}</p>
+									<dd><p><a href="_index_.sympyerror.html">SympyError</a></p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p><a href="_index_.unsupportedsympyconstruction.html">UnsupportedSympyConstruction</a></p>
 									</dd>
 								</dl>
 							</div>
@@ -197,11 +274,12 @@
 								<li>
 									<h5>sympyExpression: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the result of one of &quot;prepareCompute()&quot; method</p>
+										<p>the result of one of <a href="_index_.sympyclient.html#preparecompute">prepareCompute</a></p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MathNode</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>the result of sympy <a href="https://docs.sympy.org/latest/modules/core.html#sympy.core.basic.Basic.doit">.doit()</a> method on the provided expression.</p>
 						</li>
 					</ul>
 				</section>
@@ -215,18 +293,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L146">src/sympy-client.ts:146</a></li>
+									<li>Defined in src/sympy-client.ts:223</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the LaTex representation of the given parameter
-										Note: it is generated by Sympy and in most cases this latex can&#39;t be pasted to MathEditor
-									It only can be shown using KaTex or some other Latex renderer</p>
+									<p>Get the LaTex representation of Sympy expression.
+										Note: The latex is generated by Sympy and in most cases this latex can&#39;t be pasted to the SemanticMathEditor.
+									It only can be shown using KaTex or some other Latex renderer.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>{SympyError}</p>
+									<dd><p><a href="_index_.sympyerror.html">SympyError</a></p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p><a href="_index_.unsupportedsympyconstruction.html">UnsupportedSympyConstruction</a></p>
 									</dd>
 								</dl>
 							</div>
@@ -235,11 +316,12 @@
 								<li>
 									<h5>sympyExpression: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the result of one of &quot;prepareCompute()&quot; method</p>
+										<p>the result of one of <a href="_index_.sympyclient.html#preparecompute">prepareCompute</a></p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>the LaTex representation of the given parameter.</p>
 						</li>
 					</ul>
 				</section>
@@ -253,19 +335,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L81">src/sympy-client.ts:81</a></li>
+									<li>Defined in src/sympy-client.ts:140</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns the same expression as sympy has understood it
-										The returned expression is equivavlent to entered one (but not equal in genearl case)
+									<p>The returned expression is equivavlent to entered one (but not equal in genearl case)
 										The goal of this method is to ensure sympy understands the expression
-									It is for use with tests</p>
+									It is designed for use with tests. Note: <strong>MathNode</strong> class belongs to the <a href="https://github.com/softaria/semantic-math-editor">SemanticMatEditor</a></p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>throws</dt>
-									<dd><p>{SympyError}</p>
+									<dd><p><a href="_index_.sympyerror.html">SympyError</a></p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p><a href="_index_.unsupportedsympyconstruction.html">UnsupportedSympyConstruction</a></p>
 									</dd>
 								</dl>
 							</div>
@@ -274,7 +358,7 @@
 								<li>
 									<h5>sympyExpression: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>the result of one of &quot;prepare...()&quot; methods</p>
+										<p>the result of one of <a href="_index_.sympyclient.html#preparecompute">prepareCompute</a> methods</p>
 									</div>
 								</li>
 								<li>
@@ -285,6 +369,7 @@
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MathNode</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>the expression passed as an argument as sympy has understood it</p>
 						</li>
 					</ul>
 				</section>
@@ -298,19 +383,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L220">src/sympy-client.ts:220</a></li>
+									<li>Defined in src/sympy-client.ts:348</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates an image with 2d plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>sympyExpressions: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>One or more expressions to plot. Each is the result of one of <a href="_index_.sympyclient.html#preparecompute">prepareCompute</a></p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onError: <span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback to call in case of error</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
@@ -332,12 +431,19 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional interval where we need the plot</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot2dparams.html" class="tsd-signature-type">Plot2dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLImageElement</span></h4>
+							<p>image element.</p>
 						</li>
 					</ul>
 				</section>
@@ -351,25 +457,43 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L161">src/sympy-client.ts:161</a></li>
+									<li>Defined in src/sympy-client.ts:254</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates source for image with 2d parametric plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>expressionPairs: <span class="tsd-signature-symbol">{ </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one or more pair of expressions to generate the parametric plot.</p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional interval where we need the plot</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot2dparams.html" class="tsd-signature-type">Plot2dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>URL to be added to image tag.</p>
 						</li>
 					</ul>
 				</section>
@@ -377,31 +501,49 @@
 					<a name="plot2dsrc" class="tsd-anchor"></a>
 					<h3>plot2d<wbr>Src</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plot2d<wbr>Src<span class="tsd-signature-symbol">(</span>sympyExpression<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, interval<span class="tsd-signature-symbol">?: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot2dparams.html" class="tsd-signature-type">Plot2dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">plot2d<wbr>Src<span class="tsd-signature-symbol">(</span>sympyExpressions<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, interval<span class="tsd-signature-symbol">?: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot2dparams.html" class="tsd-signature-type">Plot2dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L153">src/sympy-client.ts:153</a></li>
+									<li>Defined in src/sympy-client.ts:238</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates source for image with 2d plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>sympyExpression: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>sympyExpressions: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>One or more expressions to plot. Each is the result of one of <a href="_index_.sympyclient.html#preparecompute">prepareCompute</a></p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional interval where we need the plot</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot2dparams.html" class="tsd-signature-type">Plot2dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>URL to be added to image tag.</p>
 						</li>
 					</ul>
 				</section>
@@ -415,19 +557,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L261">src/sympy-client.ts:261</a></li>
+									<li>Defined in src/sympy-client.ts:407</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates image with 2d parametric plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>expressionPairs: <span class="tsd-signature-symbol">{ </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one or more pair of expressions to generate the parametric plot.</p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onError: <span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback to call in case of error</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
@@ -449,12 +605,19 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> interval: <a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional interval where we need the plot</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot2dparams.html" class="tsd-signature-type">Plot2dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLImageElement</span></h4>
+							<p>image element</p>
 						</li>
 					</ul>
 				</section>
@@ -468,19 +631,33 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L240">src/sympy-client.ts:240</a></li>
+									<li>Defined in src/sympy-client.ts:377</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates source for image with 3d plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>sympyExpressions: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one or more expressions to plot</p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onError: <span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback to call in case of error</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
@@ -502,6 +679,9 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> intervals: <span class="tsd-signature-symbol">{ </span>i1<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>i2<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol"> }</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional intervals for both dimensions of the 3d plot</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>i1<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a></h5>
@@ -513,9 +693,13 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLImageElement</span></h4>
+							<p>image element.</p>
 						</li>
 					</ul>
 				</section>
@@ -523,28 +707,43 @@
 					<a name="plot3dparametriclinesrc" class="tsd-anchor"></a>
 					<h3>plot3d<wbr>Parametric<wbr>Line<wbr>Src</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plot3d<wbr>Parametric<wbr>Line<wbr>Src<span class="tsd-signature-symbol">(</span>expressionPairs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">plot3d<wbr>Parametric<wbr>Line<wbr>Src<span class="tsd-signature-symbol">(</span>expressions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L204">src/sympy-client.ts:204</a></li>
+									<li>Defined in src/sympy-client.ts:318</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates source for image with 3d parametric plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>expressionPairs: <span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>expressions: <span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one or more triplet of the expressions. Each with its own iterval.</p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>URL to be added to image tag.</p>
 						</li>
 					</ul>
 				</section>
@@ -552,28 +751,43 @@
 					<a name="plot3dparametricsurfacesrc" class="tsd-anchor"></a>
 					<h3>plot3d<wbr>Parametric<wbr>Surface<wbr>Src</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plot3d<wbr>Parametric<wbr>Surface<wbr>Src<span class="tsd-signature-symbol">(</span>expressionPairs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>r_u<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>r_v<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">plot3d<wbr>Parametric<wbr>Surface<wbr>Src<span class="tsd-signature-symbol">(</span>expressions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>r_u<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>r_v<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L211">src/sympy-client.ts:211</a></li>
+									<li>Defined in src/sympy-client.ts:332</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates source for image with 3d parametric plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>expressionPairs: <span class="tsd-signature-symbol">{ </span>r_u<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>r_v<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>expressions: <span class="tsd-signature-symbol">{ </span>r_u<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>r_v<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one or more triplet of the expressions. Each with its own pair of the itervals.</p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>URL to be added to image tag.</p>
 						</li>
 					</ul>
 				</section>
@@ -581,25 +795,39 @@
 					<a name="plot3dsrc" class="tsd-anchor"></a>
 					<h3>plot3d<wbr>Src</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plot3d<wbr>Src<span class="tsd-signature-symbol">(</span>sympyExpression<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, intervals<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>i1<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>i2<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol"> }</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+						<li class="tsd-signature tsd-kind-icon">plot3d<wbr>Src<span class="tsd-signature-symbol">(</span>sympyExpressions<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, intervals<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">{ </span>i1<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>i2<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol"> }</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L173">src/sympy-client.ts:173</a></li>
+									<li>Defined in src/sympy-client.ts:273</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates source for image with 3d plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>sympyExpression: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>sympyExpressions: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one or more expressions to plot</p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> intervals: <span class="tsd-signature-symbol">{ </span>i1<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>i2<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol"> }</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>optional intervals for both dimensions of the 3d plot</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter">
 											<h5>i1<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a></h5>
@@ -611,9 +839,13 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>URL to be added to image tag.</p>
 						</li>
 					</ul>
 				</section>
@@ -621,25 +853,39 @@
 					<a name="plot3d_parametric_line" class="tsd-anchor"></a>
 					<h3>plot3d_<wbr>parametric_<wbr>line</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plot3d_<wbr>parametric_<wbr>line<span class="tsd-signature-symbol">(</span>expressionPairs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, onError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLImageElement</span></li>
+						<li class="tsd-signature tsd-kind-icon">plot3d_<wbr>parametric_<wbr>line<span class="tsd-signature-symbol">(</span>expressions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, onError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLImageElement</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L283">src/sympy-client.ts:283</a></li>
+									<li>Defined in src/sympy-client.ts:437</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates image with 3d parametric plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>expressionPairs: <span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>expressions: <span class="tsd-signature-symbol">{ </span>interval<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one or more triplet of the expressions. Each with its own iterval.</p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onError: <span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback to call in case of error</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
@@ -661,9 +907,13 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLImageElement</span></h4>
+							<p>image element.</p>
 						</li>
 					</ul>
 				</section>
@@ -671,25 +921,39 @@
 					<a name="plot3d_parametric_surface" class="tsd-anchor"></a>
 					<h3>plot3d_<wbr>parametric_<wbr>surface</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">plot3d_<wbr>parametric_<wbr>surface<span class="tsd-signature-symbol">(</span>expressionPairs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>r_u<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>r_v<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, onError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLImageElement</span></li>
+						<li class="tsd-signature tsd-kind-icon">plot3d_<wbr>parametric_<wbr>surface<span class="tsd-signature-symbol">(</span>expressions<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>r_u<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>r_v<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span>, svg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, onError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, params<span class="tsd-signature-symbol">?: </span><a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLImageElement</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L302">src/sympy-client.ts:302</a></li>
+									<li>Defined in src/sympy-client.ts:464</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Generates image with 3d parametric plot.</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>expressionPairs: <span class="tsd-signature-symbol">{ </span>r_u<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>r_v<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>expressions: <span class="tsd-signature-symbol">{ </span>r_u<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>r_v<span class="tsd-signature-symbol">: </span><a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a><span class="tsd-signature-symbol">; </span>x<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>y<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol">; </span>z<span class="tsd-signature-symbol">: </span><a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>one or more triplet of the expressions. Each with its own pair of the itervals.</p>
+									</div>
 								</li>
 								<li>
 									<h5>svg: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if the result must be in SVG (if not, PNG is used)</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> onError: <span class="tsd-signature-symbol">(</span>err<span class="tsd-signature-symbol">: </span><a href="_index_.sympyerror.html" class="tsd-signature-type">SympyError</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>callback to call in case of error</p>
+									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-signature">
 											<ul class="tsd-signatures tsd-kind-type-literal">
@@ -711,9 +975,13 @@
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> params: <a href="_index_.plot3dparams.html" class="tsd-signature-type">Plot3dParams</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>additional plot parameters</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">HTMLImageElement</span></h4>
+							<p>image lement.</p>
 						</li>
 					</ul>
 				</section>
@@ -727,14 +995,14 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L68">src/sympy-client.ts:68</a></li>
+									<li>Defined in src/sympy-client.ts:126</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Converts MathTree from the MatEditor to SympyCall
-										Alternatively returns MathEditor&#39;s {SemanticErrorDescription} (if converting is not possible)
-									The SemanticErrorDescription object can be used to decorate problematic node in the MathEditor</p>
+									<p>Converts MathTree from the <a href="https://github.com/softaria/semantic-math-editor">SemanticMatEditor</a> to <a href="_index_.preparedsympycall.html">PreparedSympyCall</a>
+										Alternatively returns SemanticMathEditor&#39;s {SemanticErrorDescription} (if converting is not possible)
+									The SemanticErrorDescription object can be used to decorate problematic node in the SemanticMathEditor</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -759,22 +1027,37 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L182">src/sympy-client.ts:182</a></li>
+									<li>Defined in src/sympy-client.ts:289</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates interval objects for plot generation methods</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>v: <span class="tsd-signature-type">MathVariable</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a variable. Please look at <a href="https://github.com/softaria/semantic-math-editor">SemanticMathEditor</a> for MathVariable meaning.</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> start: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a min value</p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> end: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>a max value</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_index_.plotinterval.html" class="tsd-signature-type">PlotInterval</a></h4>
+							<p>object, suitable for passing to plotting methods.</p>
 						</li>
 					</ul>
 				</section>
@@ -788,19 +1071,36 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/softaria/semantic-math-processor-client/blob/15e5128/src/sympy-client.ts#L120">src/sympy-client.ts:120</a></li>
+									<li>Defined in src/sympy-client.ts:195</li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p><a href="_index_.sympyerror.html">SympyError</a></p>
+									</dd>
+									<dt>throws</dt>
+									<dd><p><a href="_index_.unsupportedsympyconstruction.html">UnsupportedSympyConstruction</a></p>
+									</dd>
+								</dl>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>sympyExpression: <a href="_index_.preparedsympycall.html" class="tsd-signature-type">PreparedSympyCall</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the result of one of <a href="_index_.sympyclient.html#preparecompute">prepareCompute</a></p>
+									</div>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> log: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>if true, writes debug info to the console</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">MathNode</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>the result of sympy <a href="https://docs.sympy.org/latest/modules/core.html#module-sympy.core.sympify">simplify</a> function on the provided expression.</p>
 						</li>
 					</ul>
 				</section>
@@ -911,24 +1211,6 @@
 					</li>
 					<li class=" tsd-kind-class tsd-parent-kind-module">
 						<a href="_index_.unsupportedsympyconstruction.html" class="tsd-kind-icon">Unsupported<wbr>Sympy<wbr>Construction</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getallvariables" class="tsd-kind-icon">get<wbr>All<wbr>Variables</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getallvariablesfromnodes" class="tsd-kind-icon">get<wbr>All<wbr>Variables<wbr>From<wbr>Nodes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getanyvariable" class="tsd-kind-icon">get<wbr>Any<wbr>Variable</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getanyvariablefromnodes" class="tsd-kind-icon">get<wbr>Any<wbr>Variable<wbr>From<wbr>Nodes</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#getsympytrigname" class="tsd-kind-icon">get<wbr>Sympy<wbr>Trig<wbr>Name</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module">
-						<a href="../modules/_index_.html#unquote" class="tsd-kind-icon">unquote</a>
 					</li>
 				</ul>
 			</nav>
