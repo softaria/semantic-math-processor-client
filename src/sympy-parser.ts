@@ -8,6 +8,7 @@ export abstract class SympyBaseToken {
 
 }
 
+
 export abstract class SympyToken extends SympyBaseToken {
   readonly type: string;
   constructor(func: string) {
@@ -169,16 +170,16 @@ class SympyParser {
     for (let i = 0; i < input.length; i++) {
       const ch = input[i];
 
-      if(this.inQuote) {
+      if (this.inQuote) {
         //treat all the symbols as part of string
         this.currentString.append(ch);
-        if(ch === "'") {
+        if (ch === "'") {
           this.inQuote = false;
         }
         continue;
       }
       else {
-        if(ch === "'") {
+        if (ch === "'") {
           this.inQuote = true;
           //go further to start the new string
         }

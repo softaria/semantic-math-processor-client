@@ -23,7 +23,7 @@ export enum SympyErrorCode {
  * 
  * @category API
  */
-export class SympyError  extends Error {
+export class SympyError extends Error {
   readonly code: SympyErrorCode;
   readonly message: string;
 
@@ -46,7 +46,7 @@ export class SympyError  extends Error {
 export class UnsupportedSympyConstruction extends Error {
 
   readonly name: string;
-  wholeExpression:SympyToken;
+  wholeExpression: SympyToken;
 
   constructor(name: string, message: string) {
     super(message);
@@ -56,7 +56,7 @@ export class UnsupportedSympyConstruction extends Error {
     Object.setPrototypeOf(this, UnsupportedSympyConstruction.prototype);
   }
 
-  get preparedSympyCall():PreparedSympyCall {
+  get preparedSympyCall(): PreparedSympyCall {
     return new PreparedSympyCall(this.wholeExpression);
   }
 }
@@ -67,11 +67,11 @@ export class UnsupportedSympyConstruction extends Error {
  * @category API
  */
 export class PreparedSympyCall {
-  readonly token:SympyToken;
-  constructor(token:SympyToken) {
+  readonly token: SympyToken;
+  constructor(token: SympyToken) {
     this.token = token;
   }
-  stringify():string {
+  stringify(): string {
     return this.token.accept(SympyStringify.instance);
   }
 }
@@ -100,10 +100,10 @@ export enum Simpler {
  * @category API
  */
 export class EquivResponse {
-  eq:Equiv;
-  si:Simpler;
+  eq: Equiv;
+  si: Simpler;
 
-  constructor( eq:Equiv,si:Simpler) {
+  constructor(eq: Equiv, si: Simpler) {
     this.eq = eq;
     this.si = si;
   }
@@ -113,19 +113,19 @@ export class EquivResponse {
  * @category API
  */
 export class PlotInterval {
- 
-  variable:PreparedSympyCall;
-  from:PreparedSympyCall;
-  to:PreparedSympyCall;
 
-  constructor(variable:PreparedSympyCall,from:PreparedSympyCall, to:PreparedSympyCall) {
+  variable: PreparedSympyCall;
+  from: PreparedSympyCall;
+  to: PreparedSympyCall;
+
+  constructor(variable: PreparedSympyCall, from: PreparedSympyCall, to: PreparedSympyCall) {
     this.variable = variable;
     this.from = from;
     this.to = to;
   }
 
   asSympyTuple(): string {
-    return "("+[this.variable.stringify(),this.from.stringify(),this.to.stringify()].join()+")";
+    return "(" + [this.variable.stringify(), this.from.stringify(), this.to.stringify()].join() + ")";
   }
 }
 
@@ -133,18 +133,18 @@ export class PlotInterval {
  * @category API
  */
 export class Plot2dParams {
-  adaptive?:boolean;
-  depth?:number;
-  nb_of_points?:number;
-  line_color?:number;
-  title?:string;
-  xlabel?:string;
-  ylabel?:string;
-  xscale?:'linear'|'log';
-  yscale?:'linear'|'log';
-  axis_center?:number[];
-  xlim?:number[];
-  ylim?:number[];
+  adaptive?: boolean;
+  depth?: number;
+  nb_of_points?: number;
+  line_color?: number;
+  title?: string;
+  xlabel?: string;
+  ylabel?: string;
+  xscale?: 'linear' | 'log';
+  yscale?: 'linear' | 'log';
+  axis_center?: number[];
+  xlim?: number[];
+  ylim?: number[];
 }
 
 /**
@@ -152,8 +152,8 @@ export class Plot2dParams {
  */
 export class Plot3dParams {
   nb_of_points_x?: number;
-  nb_of_points_y?:number;
-  title? : string;
+  nb_of_points_y?: number;
+  title?: string;
 }
 
 
