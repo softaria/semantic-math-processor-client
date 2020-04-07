@@ -6,7 +6,7 @@ on:
     paths-ignore:
       - 'README.md'
 jobs:
-  build:
+  document:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -20,7 +20,8 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "Typedoc"
-        git commit -m "Add changes" -a
+        git add --all
+        git commit -m "Generating documentation" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
