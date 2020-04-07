@@ -46,6 +46,6 @@ npm i semantic-math-processor-client
 
 # Read the documentation
 
-TBD
+https://softaria.github.io/semantic-math-processor-client
 
 
