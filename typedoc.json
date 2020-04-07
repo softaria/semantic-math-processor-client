@@ -10,6 +10,6 @@
   "defaultCategory": "internal",
   "readme": "./TYPEDOC.md",
   "exclude": "test/*.**",
-  "name":"Semantic Math Processor Client"
- 
+  "name":"Semantic Math Processor Client",
+  "theme": "minimal" 
 }
