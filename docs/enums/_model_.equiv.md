@@ -17,7 +17,7 @@
 
 • **different**: = "different"
 
-*Defined in [src/model.ts:81](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L81)*
+*Defined in [src/model.ts:81](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L81)*
 
 ___
 
@@ -25,7 +25,7 @@ ___
 
 • **equiv**: = "equiv"
 
-*Defined in [src/model.ts:79](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L79)*
+*Defined in [src/model.ts:79](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L79)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **equivCalc**: = "equivCalc"
 
-*Defined in [src/model.ts:80](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L80)*
+*Defined in [src/model.ts:80](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L80)*
 
 ___
 
@@ -41,4 +41,4 @@ ___
 
 • **identical**: = "identical"
 
-*Defined in [src/model.ts:78](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L78)*
+*Defined in [src/model.ts:78](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L78)*

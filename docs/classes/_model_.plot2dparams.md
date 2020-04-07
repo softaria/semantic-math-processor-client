@@ -29,7 +29,7 @@
 
 • **adaptive**? : *boolean*
 
-*Defined in [src/model.ts:131](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L131)*
+*Defined in [src/model.ts:131](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L131)*
 
 ___
 
@@ -37,7 +37,7 @@ ___
 
 • **axis_center**? : *number[]*
 
-*Defined in [src/model.ts:140](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L140)*
+*Defined in [src/model.ts:140](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L140)*
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 • **depth**? : *number*
 
-*Defined in [src/model.ts:132](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L132)*
+*Defined in [src/model.ts:132](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L132)*
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 • **line_color**? : *number*
 
-*Defined in [src/model.ts:134](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L134)*
+*Defined in [src/model.ts:134](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L134)*
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 • **nb_of_points**? : *number*
 
-*Defined in [src/model.ts:133](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L133)*
+*Defined in [src/model.ts:133](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L133)*
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 • **title**? : *string*
 
-*Defined in [src/model.ts:135](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L135)*
+*Defined in [src/model.ts:135](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L135)*
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 • **xlabel**? : *string*
 
-*Defined in [src/model.ts:136](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L136)*
+*Defined in [src/model.ts:136](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L136)*
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 • **xlim**? : *number[]*
 
-*Defined in [src/model.ts:141](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L141)*
+*Defined in [src/model.ts:141](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L141)*
 
 ___
 
@@ -93,7 +93,7 @@ ___
 
 • **xscale**? : *"linear" | "log"*
 
-*Defined in [src/model.ts:138](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L138)*
+*Defined in [src/model.ts:138](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L138)*
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 • **ylabel**? : *string*
 
-*Defined in [src/model.ts:137](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L137)*
+*Defined in [src/model.ts:137](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L137)*
 
 ___
 
@@ -109,7 +109,7 @@ ___
 
 • **ylim**? : *number[]*
 
-*Defined in [src/model.ts:142](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L142)*
+*Defined in [src/model.ts:142](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L142)*
 
 ___
 
@@ -117,4 +117,4 @@ ___
 
 • **yscale**? : *"linear" | "log"*
 
-*Defined in [src/model.ts:139](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L139)*
+*Defined in [src/model.ts:139](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L139)*

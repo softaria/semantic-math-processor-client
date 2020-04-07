@@ -23,7 +23,7 @@
 
 \+ **new EquivResponse**(`eq`: [Equiv](../enums/_model_.equiv.md), `si`: [Simpler](../enums/_model_.simpler.md)): *[EquivResponse](_model_.equivresponse.md)*
 
-*Defined in [src/model.ts:99](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L99)*
+*Defined in [src/model.ts:99](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L99)*
 
 **Parameters:**
 
@@ -40,7 +40,7 @@ Name | Type |
 
 • **eq**: *[Equiv](../enums/_model_.equiv.md)*
 
-*Defined in [src/model.ts:98](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L98)*
+*Defined in [src/model.ts:98](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L98)*
 
 ___
 
@@ -48,4 +48,4 @@ ___
 
 • **si**: *[Simpler](../enums/_model_.simpler.md)*
 
-*Defined in [src/model.ts:99](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L99)*
+*Defined in [src/model.ts:99](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L99)*

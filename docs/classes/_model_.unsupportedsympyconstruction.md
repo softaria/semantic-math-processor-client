@@ -37,7 +37,7 @@ You should also be able to get latex from Sympy for the cinstruction returned
 
 \+ **new UnsupportedSympyConstruction**(`name`: string, `message`: string): *[UnsupportedSympyConstruction](_model_.unsupportedsympyconstruction.md)*
 
-*Defined in [src/model.ts:44](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L44)*
+*Defined in [src/model.ts:44](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L44)*
 
 **Parameters:**
 
@@ -66,7 +66,7 @@ ___
 
 *Overrides [SympyError](_model_.sympyerror.md).[name](_model_.sympyerror.md#name)*
 
-*Defined in [src/model.ts:43](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L43)*
+*Defined in [src/model.ts:43](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L43)*
 
 ___
 
@@ -84,7 +84,7 @@ ___
 
 • **wholeExpression**: *SympyToken*
 
-*Defined in [src/model.ts:44](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L44)*
+*Defined in [src/model.ts:44](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L44)*
 
 ___
 
@@ -100,6 +100,6 @@ Defined in node_modules/typescript/lib/lib.es5.d.ts:984
 
 • **get preparedSympyCall**(): *[PreparedSympyCall](_model_.preparedsympycall.md)*
 
-*Defined in [src/model.ts:54](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L54)*
+*Defined in [src/model.ts:54](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L54)*
 
 **Returns:** *[PreparedSympyCall](_model_.preparedsympycall.md)*

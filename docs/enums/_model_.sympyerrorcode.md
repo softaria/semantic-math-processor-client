@@ -17,7 +17,7 @@
 
 • **BAD_ARGUMENT**: = "BAD_ARGUMENT"
 
-*Defined in [src/model.ts:7](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L7)*
+*Defined in [src/model.ts:7](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L7)*
 
 ___
 
@@ -25,7 +25,7 @@ ___
 
 • **BAD_METHOD**: = "BAD_METHOD"
 
-*Defined in [src/model.ts:9](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L9)*
+*Defined in [src/model.ts:9](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L9)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **CONNECTION_ERROR**: = "CONNECTION_ERROR"
 
-*Defined in [src/model.ts:10](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L10)*
+*Defined in [src/model.ts:10](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L10)*
 
 ___
 
@@ -41,4 +41,4 @@ ___
 
 • **METHOD_FAILURE**: = "METHOD_FAILURE"
 
-*Defined in [src/model.ts:8](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L8)*
+*Defined in [src/model.ts:8](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L8)*

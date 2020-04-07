@@ -20,7 +20,7 @@
 
 • **nb_of_points_x**? : *number*
 
-*Defined in [src/model.ts:149](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L149)*
+*Defined in [src/model.ts:149](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L149)*
 
 ___
 
@@ -28,7 +28,7 @@ ___
 
 • **nb_of_points_y**? : *number*
 
-*Defined in [src/model.ts:150](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L150)*
+*Defined in [src/model.ts:150](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L150)*
 
 ___
 
@@ -36,4 +36,4 @@ ___
 
 • **title**? : *string*
 
-*Defined in [src/model.ts:151](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L151)*
+*Defined in [src/model.ts:151](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L151)*

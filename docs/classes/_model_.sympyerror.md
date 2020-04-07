@@ -33,7 +33,7 @@ And when sympy was not able to proceed for some internal reason (METHOD_FAILURE)
 
 \+ **new SympyError**(`code`: [SympyErrorCode](../enums/_model_.sympyerrorcode.md), `message`: string): *[SympyError](_model_.sympyerror.md)*
 
-*Defined in [src/model.ts:23](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L23)*
+*Defined in [src/model.ts:23](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L23)*
 
 **Parameters:**
 
@@ -50,7 +50,7 @@ Name | Type |
 
 • **code**: *[SympyErrorCode](../enums/_model_.sympyerrorcode.md)*
 
-*Defined in [src/model.ts:22](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L22)*
+*Defined in [src/model.ts:22](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L22)*
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 *Overrides [UnsupportedSympyConstruction](_model_.unsupportedsympyconstruction.md).[message](_model_.unsupportedsympyconstruction.md#message)*
 
-*Defined in [src/model.ts:23](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L23)*
+*Defined in [src/model.ts:23](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L23)*
 
 ___
 

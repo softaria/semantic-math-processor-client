@@ -17,7 +17,7 @@
 
 • **first**: = "first"
 
-*Defined in [src/model.ts:88](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L88)*
+*Defined in [src/model.ts:88](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L88)*
 
 ___
 
@@ -25,7 +25,7 @@ ___
 
 • **none**: = "none"
 
-*Defined in [src/model.ts:90](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L90)*
+*Defined in [src/model.ts:90](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L90)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **second**: = "second"
 
-*Defined in [src/model.ts:89](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L89)*
+*Defined in [src/model.ts:89](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L89)*
 
 ___
 
@@ -41,4 +41,4 @@ ___
 
 • **unknown**: = "unknown"
 
-*Defined in [src/model.ts:91](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L91)*
+*Defined in [src/model.ts:91](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L91)*

@@ -28,7 +28,7 @@ Treat it as a blackbox, contained prepared call for sympy
 
 \+ **new PreparedSympyCall**(`token`: SympyToken): *[PreparedSympyCall](_model_.preparedsympycall.md)*
 
-*Defined in [src/model.ts:65](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L65)*
+*Defined in [src/model.ts:65](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L65)*
 
 **Parameters:**
 
@@ -44,7 +44,7 @@ Name | Type |
 
 • **token**: *SympyToken*
 
-*Defined in [src/model.ts:65](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L65)*
+*Defined in [src/model.ts:65](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L65)*
 
 ## Methods
 
@@ -52,6 +52,6 @@ Name | Type |
 
 ▸ **stringify**(): *string*
 
-*Defined in [src/model.ts:69](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L69)*
+*Defined in [src/model.ts:69](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L69)*
 
 **Returns:** *string*

@@ -28,7 +28,7 @@
 
 \+ **new PlotInterval**(`variable`: [PreparedSympyCall](_model_.preparedsympycall.md), `from`: [PreparedSympyCall](_model_.preparedsympycall.md), `to`: [PreparedSympyCall](_model_.preparedsympycall.md)): *[PlotInterval](_model_.plotinterval.md)*
 
-*Defined in [src/model.ts:114](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L114)*
+*Defined in [src/model.ts:114](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L114)*
 
 **Parameters:**
 
@@ -46,7 +46,7 @@ Name | Type |
 
 • **from**: *[PreparedSympyCall](_model_.preparedsympycall.md)*
 
-*Defined in [src/model.ts:113](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L113)*
+*Defined in [src/model.ts:113](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L113)*
 
 ___
 
@@ -54,7 +54,7 @@ ___
 
 • **to**: *[PreparedSympyCall](_model_.preparedsympycall.md)*
 
-*Defined in [src/model.ts:114](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L114)*
+*Defined in [src/model.ts:114](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L114)*
 
 ___
 
@@ -62,7 +62,7 @@ ___
 
 • **variable**: *[PreparedSympyCall](_model_.preparedsympycall.md)*
 
-*Defined in [src/model.ts:112](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L112)*
+*Defined in [src/model.ts:112](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L112)*
 
 ## Methods
 
@@ -70,6 +70,6 @@ ___
 
 ▸ **asSympyTuple**(): *string*
 
-*Defined in [src/model.ts:122](https://github.com/softaria/semantic-math-processor-client/blob/6b56c1b/src/model.ts#L122)*
+*Defined in [src/model.ts:122](https://github.com/softaria/semantic-math-processor-client/blob/569d001/src/model.ts#L122)*
 
 **Returns:** *string*
