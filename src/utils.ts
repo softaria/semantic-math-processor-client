@@ -1,6 +1,8 @@
+/**
+ * @hidden
+ * @packageDocumentation
+ */
 import { MathTrigonometryType, MathStructure, MathVariable, traverseStructures, MathNodeName, MathNodePrinter, acceptMathNode } from "semantic-math-editor";
-
-
 
 export function unquote(s: string): string {
   if (s.startsWith("'") && s.endsWith("'")) {

@@ -1,3 +1,7 @@
+/**
+ * @hidden
+ * @packageDocumentation
+ */
 import { unquote } from "./utils";
 
 export abstract class SympyBaseToken {

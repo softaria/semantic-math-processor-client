@@ -3,6 +3,7 @@ const path = require('path');
 const isProd = (process.env.NODE_ENV === 'production');
 const TerserPlugin = require('terser-webpack-plugin');
 
+
 function getOptimizations() {
     const optimizations = {};
 
@@ -35,7 +36,7 @@ module.exports = [{
     mode: isProd ? 'none' : 'development',
 
     entry: {
-        index: path.join(__dirname, 'src','index.ts'),
+        index: path.join(__dirname, 'src', 'index.ts'),
     },
     output: {
         filename: '[name].bundle.js',
@@ -61,10 +62,12 @@ module.exports = [{
             commonjs2: 'semantic-math-editor',
             amd: 'semantic-math-editor',
             umd: 'semantic-math-editor',
-            root: 'SemanticMathEditor' 
+            root: 'SemanticMathEditor'
         }
     },
-    plugins: [],
+    
+   
+
     optimization: getOptimizations(),
 
     resolve: {

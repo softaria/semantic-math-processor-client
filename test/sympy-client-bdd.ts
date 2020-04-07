@@ -10,7 +10,7 @@ const expect = chai.expect;
 const SERVER_ADDRESS = "https://math-processor.math-editor.com";
 //const SERVER_ADDRESS = "http://localhost:5000";
 
-export class AxiousBasedHttpClient implements HttpClient {
+class AxiousBasedHttpClient implements HttpClient {
   requestAsync<Request, Response>(method: "GET" | "POST", url: string, content?: Request, callback?: (response: Response) => void, errorCallback?: (err: any) => void): void {
     switch (method) {
       case "GET":
@@ -42,7 +42,7 @@ export class AxiousBasedHttpClient implements HttpClient {
 
 const client = new SympyClient(SERVER_ADDRESS, new AxiousBasedHttpClient());
 
-export async function testSympyClient(node: MathNode) {
+async function testSympyClient(node: MathNode) {
 
   it("tests sympy client " + acceptMathNode(node, MathNodePrinter.instance), async function () {
     this.timeout(20000);

@@ -1,5 +1,8 @@
 import { SympyToken, SympyStringify } from "./sympy-parser";
 
+/**
+ * @category API
+ */
 export enum SympyErrorCode {
   BAD_ARGUMENT = "BAD_ARGUMENT",
   METHOD_FAILURE = "METHOD_FAILURE",
@@ -12,6 +15,8 @@ export enum SympyErrorCode {
  * It will be thrown when sympy REST service is not reachable (CONNECTION_ERROR)
  * When the request has bad format (BAD_ARGUMENT and BAD_METHOD)
  * And when sympy was not able to proceed for some internal reason (METHOD_FAILURE)
+ * 
+ * @category API
  */
 export class SympyError  extends Error {
   readonly code: SympyErrorCode;
@@ -30,6 +35,8 @@ export class SympyError  extends Error {
  * It will be thrown when sympy was able to proceed your request, but we was not able to understand it.
  * Probably we should support some yet unsupported Sympy construction
  * You should also be able to get latex from Sympy for the cinstruction returned
+ * 
+ * @category API
  */
 export class UnsupportedSympyConstruction extends Error {
 
@@ -51,6 +58,8 @@ export class UnsupportedSympyConstruction extends Error {
 
 /**
  * Treat it as a blackbox, contained prepared call for sympy
+ * 
+ * @category API
  */
 export class PreparedSympyCall {
   readonly token:SympyToken;
@@ -62,6 +71,9 @@ export class PreparedSympyCall {
   }
 }
 
+/**
+ * @category API
+ */
 export enum Equiv {
   identical = "identical",
   equiv = "equiv",
@@ -69,6 +81,9 @@ export enum Equiv {
   different = "different"
 }
 
+/**
+ * @category API
+ */
 export enum Simpler {
   first = "first",
   second = "second",
@@ -76,6 +91,9 @@ export enum Simpler {
   unknown = "unknown",
 }
 
+/**
+ * @category API
+ */
 export class EquivResponse {
   eq:Equiv;
   si:Simpler;
@@ -86,6 +104,9 @@ export class EquivResponse {
   }
 }
 
+/**
+ * @category API
+ */
 export class PlotInterval {
  
   variable:PreparedSympyCall;
@@ -103,6 +124,9 @@ export class PlotInterval {
   }
 }
 
+/**
+ * @category API
+ */
 export class Plot2dParams {
   adaptive?:boolean;
   depth?:number;
@@ -118,6 +142,9 @@ export class Plot2dParams {
   ylim?:number[];
 }
 
+/**
+ * @category API
+ */
 export class Plot3dParams {
   nb_of_points_x?: number;
   nb_of_points_y?:number;

@@ -1,3 +1,7 @@
+/**
+ * @hidden
+ * @packageDocumentation
+ */
 import { HttpClient } from "semantic-math-editor";
 import { SympyErrorCode, SympyError } from "./model";
 

@@ -1,4 +1,7 @@
-
+/**
+ * @hidden
+ * @packageDocumentation
+ */
 import { SympyFunction, SympyArray, SympyString, SympyStringify, SympyUserFunction, SympyToken, SympyMethod } from "./sympy-parser";
 
 import { getSympyTrigName, getAnyVariable } from "./utils";

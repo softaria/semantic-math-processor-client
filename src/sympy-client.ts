@@ -3,9 +3,10 @@ import { SympyStringify, parseSympyExpression, SympyToken } from "./sympy-parser
 import { SympyRESTClient } from "./sympy-rest-client";
 import { fromSympy } from "./from-sympy";
 import { BaseSymPyVisitor, InvalidNodeError } from "./to-sympy";
-import { unquote, getAnyVariable, getAnyVariableFromNodes } from "./utils";
+import { unquote } from "./utils";
 import { SemanticErrorDescription, MathNode, MathNodeVisitor, acceptMathNode, MathDifferential, MathSet, MathSystemOfEquations, HttpClient, MathStructure, MathNumber, MathUnaryMinus, MathVariable } from "semantic-math-editor";
 import { PreparedSympyCall, EquivResponse, PlotInterval, Plot2dParams, SympyError, Plot3dParams } from "./model";
+
 
 class BrowserBasedHttpClient implements HttpClient {
 
@@ -43,6 +44,9 @@ class BrowserBasedHttpClient implements HttpClient {
   }
 }
 
+/**
+ * @category API
+ */
 export class SympyClient {
 
   private readonly client: SympyRESTClient;

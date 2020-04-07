@@ -1,0 +1,13 @@
+{
+  "out": "docs",
+  "mode":"modules",
+  "excludeExternals": true,
+  "excludeNotExported":true,
+  "excludePrivate":true,
+  "excludeProtected":true,
+  "categoryOrder": ["API", "*"],
+  "defaultCategory": "internal",
+  "readme": "none",
+  "exclude": "test/*.**"
+  
+}
