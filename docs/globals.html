@@ -2382,32 +2382,36 @@ img {
 				<h1>Quick start</h1>
 			</a>
 			<p>Install it</p>
-			<pre><code>npm i semantic-math-processor-<span class="hljs-keyword">client</span>
-</code></pre><p>Install <a href="https://github.com/softaria/semantic-math-editor">SemanticMathEditor</a></p>
-			<pre><code>npm i semantic-<span class="hljs-keyword">math</span>-editor</code></pre><p>Import required classes</p>
-			<pre><code>import {
-<span class="hljs-built_in">  SympyClient,</span>
-<span class="hljs-built_in">  PreparedSympyCall,</span>
-<span class="hljs-built_in">  SympyError,</span>
-<span class="hljs-built_in">  EquivResponse,</span>
-<span class="hljs-built_in">  Equiv,</span>
-<span class="hljs-built_in">  Simpler,</span>
+			<pre><code class="language-bash">npm i semantic-math-processor-client
+</code></pre>
+			<p>Install <a href="https://github.com/softaria/semantic-math-editor">SemanticMathEditor</a></p>
+			<pre><code class="language-bash">npm i semantic-math-editor</code></pre>
+			<p>Import required classes</p>
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> {
+  SympyClient,
+  PreparedSympyCall,
+  SympyError,
+  EquivResponse,
+  Equiv,
+  Simpler,
   getAllVariablesFromNodes
-} from <span class="hljs-string">"semantic-math-processor-client"</span><span class="hljs-comment">;</span>
+} <span class="hljs-keyword">from</span> <span class="hljs-string">"semantic-math-processor-client"</span>;
 
-import { 
-<span class="hljs-built_in">  MathVariable,</span> 
-<span class="hljs-built_in">  MathNumber,</span> 
-<span class="hljs-built_in">  MathPlus,</span> 
-<span class="hljs-built_in">  MathPower,</span> 
-<span class="hljs-built_in">  MathTrigonometricFunction,</span> 
+<span class="hljs-keyword">import</span> { 
+  MathVariable, 
+  MathNumber, 
+  MathPlus, 
+  MathPower, 
+  MathTrigonometricFunction, 
   MathTrigonometryType
-} from <span class="hljs-string">"semantic-math-editor"</span><span class="hljs-comment">;</span>
-</code></pre><p>Create new client:</p>
-			<pre><code> <span class="hljs-keyword">const</span> sympyClient = <span class="hljs-keyword">new</span> SympyClient(<span class="hljs-string">"https://math-processor.math-editor.com"</span>);
-</code></pre><p>Feel free to use your own installation of the <a href="https://github.com/softaria/math-processor">MathProcessor</a> instead of oe installed at <a href="https://math-processor.math-editor.com">https://math-processor.math-editor.com</a></p>
+} <span class="hljs-keyword">from</span> <span class="hljs-string">"semantic-math-editor"</span>;
+</code></pre>
+			<p>Create new client:</p>
+			<pre><code class="language-typescript"> <span class="hljs-keyword">const</span> sympyClient = <span class="hljs-keyword">new</span> SympyClient(<span class="hljs-string">"https://math-processor.math-editor.com"</span>);
+</code></pre>
+			<p>Feel free to use your own installation of the <a href="https://github.com/softaria/math-processor">MathProcessor</a> instead of oe installed at <a href="https://math-processor.math-editor.com">https://math-processor.math-editor.com</a></p>
 			<p>Simplify sum of squared sinus and squared cosinus:</p>
-			<pre><code> <span class="hljs-keyword">const</span> expression = <span class="hljs-keyword">new</span> MathPlus(
+			<pre><code class="language-typescript"> <span class="hljs-keyword">const</span> expression = <span class="hljs-keyword">new</span> MathPlus(
   <span class="hljs-keyword">new</span> MathPower(<span class="hljs-keyword">new</span> MathTrigonometricFunction(MathTrigonometryType.sin, <span class="hljs-keyword">new</span> MathVariable(<span class="hljs-string">"x"</span>, <span class="hljs-literal">false</span>)), <span class="hljs-keyword">new</span> MathNumber(<span class="hljs-string">"2"</span>)),
   <span class="hljs-keyword">new</span> MathPower(<span class="hljs-keyword">new</span> MathTrigonometricFunction(MathTrigonometryType.cos, <span class="hljs-keyword">new</span> MathVariable(<span class="hljs-string">"x"</span>, <span class="hljs-literal">false</span>)), <span class="hljs-keyword">new</span> MathNumber(<span class="hljs-string">"2"</span>)),
 );
