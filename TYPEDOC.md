@@ -90,7 +90,7 @@ else {
 ```
 # Detailed documentation
 
-Look [here](modules/_index_.html)
+Please click on the module name below.
 
 
 
