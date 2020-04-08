@@ -18,11 +18,11 @@ https://math-editor.com/integrationsDemo.html
 # Try it locally
 
 1. Checkout the project
-2. Ensure you have [npm](https://www.npmjs.com/get-npm) and [node.js](https://nodejs.org/en/download/)
+2. Ensure you have [npm](https://www.npmjs.com/get-npm)
 3. Run following commands
 ```
 npm install
-node node_modules/.bin/webpack
+npx webpack
 ```
 
 4. Open testEquiv.html and testSimplify.html in you browser (do not move the html files - open them in place)
