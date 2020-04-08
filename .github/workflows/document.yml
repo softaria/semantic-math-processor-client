@@ -16,6 +16,7 @@ jobs:
         node-version: 12.8.1
     - run: npm install
     - run: rm -rf docs
+    - run: cp -f .gitignore .gitignore-bak
     - run: cp -f .gitignore-docs .gitignore
     - run: npx typedoc
     - run: touch docs/.nojekyll
@@ -25,6 +26,9 @@ jobs:
         git config --local user.name "Typedoc"
         git add --all
         git commit -m "Generating documentation" -a
+        mv -f .gitignore-bak .gitignore
+        git add --all       
+        git commit -m "Restoring gitignore" -a
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
