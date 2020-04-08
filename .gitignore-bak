@@ -1,7 +1,0 @@
-/node_modules
-/tsOutputs
-*.js
-*.js.map
-!/webpack.config.js
-!/docs/assets/js/*.js
-/docs
