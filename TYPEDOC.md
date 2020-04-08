@@ -19,19 +19,19 @@ https://github.com/softaria/semantic-math-processor-client
 
 Install it
 
-```
+```bash
 npm i semantic-math-processor-client
 
 ```
 Install [SemanticMathEditor](https://github.com/softaria/semantic-math-editor)
 
-```
+```bash
 npm i semantic-math-editor
 ```
 
 Import required classes
 
-```
+```typescript
 import {
   SympyClient,
   PreparedSympyCall,
@@ -55,7 +55,7 @@ import {
 
 Create new client:
 
-```
+```typescript
  const sympyClient = new SympyClient("https://math-processor.math-editor.com");
 
 ```
@@ -64,7 +64,7 @@ Feel free to use your own installation of the [MathProcessor](https://github.com
 
 Simplify sum of squared sinus and squared cosinus:
 
-```
+```typescript
  const expression = new MathPlus(
   new MathPower(new MathTrigonometricFunction(MathTrigonometryType.sin, new MathVariable("x", false)), new MathNumber("2")),
   new MathPower(new MathTrigonometricFunction(MathTrigonometryType.cos, new MathVariable("x", false)), new MathNumber("2")),
