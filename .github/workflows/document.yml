@@ -15,7 +15,7 @@ jobs:
       with:
         node-version: 12.8.1
     - run: npm install
-    - run: rm -r docs
+    - run: rm -rf docs
     - run: rm .gitignore; touch .gitignore
     - run: npx typedoc
     - run: touch docs/.nojekyll
