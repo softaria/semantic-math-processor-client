@@ -1,0 +1,8 @@
+/** @hidden */
+export declare class PreconditionFailure extends Error {
+    readonly interruptExecution: boolean;
+    private static readonly SharedFootPrint;
+    private readonly footprint;
+    constructor(interruptExecution?: boolean);
+    static isFailure(err: any): err is PreconditionFailure;
+}
