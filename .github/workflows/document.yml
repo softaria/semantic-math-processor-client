@@ -16,7 +16,7 @@ jobs:
         node-version: 12.8.1
     - run: npm install
     - run: rm -rf docs
-    - run: cp -f .gitignore-docs gitignore
+    - run: cp -f .gitignore-docs .gitignore
     - run: npx typedoc
     - run: touch docs/.nojekyll
     - name: Commit files
