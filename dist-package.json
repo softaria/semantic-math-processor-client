@@ -2,7 +2,7 @@
   "name": "semantic-math-processor-client",
   "version": "<version>",
   "main": "index.bundle.js",
-  "types": "index.d.ts",
+  "types": "semantic-math-processor-client.d.ts",
   "description": "Semantic Math Processor Client is a plugin for SemanticMathEditor, which allows making math calculation using Math Processor - our REST wrapper around Sympy CAS",
   "keywords":["math editor", "Sympy client","CAS", "Math calculation online","Algebra","Calculus","Plotting"],
   "homepage": "https://github.com/softaria/semantic-math-processor-client",
