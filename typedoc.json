@@ -1,5 +1,4 @@
 {
-  "inputFiles":["./src/index.ts"],
   "out": "docs",
   "mode":"library",
   "excludeExternals": true,
