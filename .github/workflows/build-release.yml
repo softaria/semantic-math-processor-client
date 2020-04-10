@@ -31,7 +31,7 @@ jobs:
         mkdir distrib
         cp dist/* distrib/
         cp tsOutputs/src/*.d.ts distrib/
-        cp *.d.ts distrib/
+        cp tsOutputs/semantic-math-processor-client.d.ts distrib/
         cp dist-package.json distrib/package.json
         cp README.md distrib/README.md
     - run: |               
