@@ -5,7 +5,7 @@
 import { SympyFunction, SympyArray, SympyString, SympyStringify, SympyUserFunction, SympyToken, SympyMethod } from "./sympy-parser";
 
 import { getSympyTrigName, getAnyVariable } from "./utils";
-import { AcceptableVisitor, MathNodeVisitor, MathNode, acceptMathNode,  MathVariable, MathAbs, MathAnd, MathAreaIntegral, MathBrackets, MathComma, MathUndefined, MathConstant, MathConstants, MathDefiniteIntegral, MathDerivative, MathDeterminant, MathFunctionDifference, MathNodePrinter, MathDifferential, MathDivision, MathEmptySet, MathEquality, MathEqualityType, MathExpressionSet, MathFunction, MathImplicitMultiply, MathIncludeSet, MathIndefiniteIntegral, MathInfimum, MathIntersection, MathInterval, MathBracketsType, MathLeibnizDerivative, MathLimit, MathLimitType, MathLogarithm, MathMax, MathMin, MathMinus, MathMultiply, MathNaturalLogarithm, MathNumber, MathNumericSet, MathNumericSetValues, MathOr, MathParentheses, MathPiecewiseFunction, MathPlaceholder, MathPlus, MathPoint, MathPower, MathPredicate, MathProduct, MathRawText, MathReversedFunction, MathRoot, MathSquareRoot, MathSubIndex, MathSum, MathSupremum, MathSymbol, MathVerticalBar, MathTransformation, MathSet, MathSystemOfEquations, MathTrigonometricFunction, MathUnaryMinus, MathUnion, SemanticErrorDescription, MathValidationUtils } from "semantic-math-editor";
+import { util,MathNodeVisitor, MathNode, acceptMathNode,  MathVariable, MathAbs, MathAnd, MathAreaIntegral, MathBrackets, MathComma, MathUndefined, MathConstant, MathConstants, MathDefiniteIntegral, MathDerivative, MathDeterminant, MathFunctionDifference, MathNodePrinter, MathDifferential, MathDivision, MathEmptySet, MathEquality, MathEqualityType, MathExpressionSet, MathFunction, MathImplicitMultiply, MathIncludeSet, MathIndefiniteIntegral, MathInfimum, MathIntersection, MathInterval, MathBracketsType, MathLeibnizDerivative, MathLimit, MathLimitType, MathLogarithm, MathMax, MathMin, MathMinus, MathMultiply, MathNaturalLogarithm, MathNumber, MathNumericSet, MathNumericSetValues, MathOr, MathParentheses, MathPiecewiseFunction, MathPlaceholder, MathPlus, MathPoint, MathPower, MathPredicate, MathProduct, MathRawText, MathReversedFunction, MathRoot, MathSquareRoot, MathSubIndex, MathSum, MathSupremum, MathSymbol, MathVerticalBar, MathTransformation, MathSet, MathSystemOfEquations, MathTrigonometricFunction, MathUnaryMinus, MathUnion, SemanticErrorDescription, MathValidationUtils } from "semantic-math-editor";
 
 
 
@@ -35,7 +35,7 @@ function float(n: number): SympyFunction {
 
 
 
-export abstract class BaseSymPyVisitor implements MathNodeVisitor<SympyToken>, AcceptableVisitor<SympyToken> {
+export abstract class BaseSymPyVisitor implements MathNodeVisitor<SympyToken>, util.utils.AcceptableVisitor<SympyToken> {
 
   accept(node: MathNode): SympyToken {
     return acceptMathNode(node, this);

@@ -2,18 +2,16 @@
  * @hidden
  * @packageDocumentation
  */
-import { HttpClient } from "semantic-math-editor";
-import { SympyErrorCode, SympyError } from "./model";
-
+import { SympyErrorCode, SympyError, HttpClient } from "./model"; 
 
 
 class SympyRequest {
 
   readonly method: string;
   readonly args: string[];
-  readonly params?:any;
+  readonly params?: any;
 
-  constructor(method: string, args: string[],params?:any) {
+  constructor(method: string, args: string[], params?: any) {
     this.method = method;
     this.args = args;
     this.params = params;
@@ -52,27 +50,27 @@ export class SympyRESTClient {
     this.serverAddress = serverAddress;
   }
 
-  plotSrc(method: string, args: string[],svg:boolean, params?: any,checkErrorOnly?:boolean): string {
-    let ret = this.serverAddress + this.PLOT + "?method=" + method + "&args=" +encodeURIComponent(JSON.stringify(args));
+  plotSrc(method: string, args: string[], svg: boolean, params?: any, checkErrorOnly?: boolean): string {
+    let ret = this.serverAddress + this.PLOT + "?method=" + method + "&args=" + encodeURIComponent(JSON.stringify(args));
     if (params) {
       ret += "&params=" + encodeURIComponent(JSON.stringify(params));
     }
-    if(checkErrorOnly) {
+    if (checkErrorOnly) {
       ret += "&checkOnly=true"
     }
-    if(svg) {
+    if (svg) {
       ret += "&format=svg"
     }
     return ret;
   }
 
-  async checkPlotValidity(method: string, args: string[],svg:boolean, params?: any): Promise<boolean> {
+  async checkPlotValidity(method: string, args: string[], svg: boolean, params?: any): Promise<boolean> {
     const self = this;
-    const address = this.plotSrc(method, args,svg, params,true);
+    const address = this.plotSrc(method, args, svg, params, true);
     console.log(address);
     return new Promise<boolean>((resolve, reject) => {
       self.http.requestAsync<void, SympyResponce<boolean>>('GET', address, null, (resp) => {
-        if(resp.ok) {
+        if (resp.ok) {
           resolve(true);
         }
         else {
@@ -84,10 +82,10 @@ export class SympyRESTClient {
     });
   }
 
-  callFunction(name: string, args: string[],params?:any): Promise<string> {
+  callFunction(name: string, args: string[], params?: any): Promise<string> {
     const self = this;
     return new Promise<string>((resolve, reject) => {
-      self.http.requestAsync<SympyRequest, SympyResponce<string>>('POST', this.serverAddress + this.FUNCTION, new SympyRequest(name, args,params), (resp) => {
+      self.http.requestAsync<SympyRequest, SympyResponce<string>>('POST', this.serverAddress + this.FUNCTION, new SympyRequest(name, args, params), (resp) => {
         if (resp.ok) {
           resolve(resp.result);
         }

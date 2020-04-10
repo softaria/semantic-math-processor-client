@@ -1,10 +1,11 @@
 import * as chai from "chai";
 import "./test-helper";
 import { SympyClient } from "../src/sympy-client";
-import { MathTree, createEditorImpl, HttpClient, MathNode, acceptMathNode, MathNodePrinter, MathFunction, MathVariable, MathNumber, MathDeterminant, MathPiecewiseFunction, MathEquality, MathEqualityType, MathAnd, MathUnaryMinus, MathRawText, MathStructure, SemanticErrorDescription, MathPlus, MathPower, MathTrigonometricFunction, MathTrigonometryType, MathLimit, MathLimitType, MathDerivative, MathDerivativeType, MathNodeType, MathNodeName, MathNumericSet, MathNumericSetValues } from "semantic-math-editor";
+import { MathTree, createEditorImpl, MathNode, acceptMathNode, MathNodePrinter, MathFunction, MathVariable, MathNumber, MathDeterminant, MathPiecewiseFunction, MathEquality, MathEqualityType, MathAnd, MathUnaryMinus, MathRawText, MathStructure, SemanticErrorDescription, MathPlus, MathPower, MathTrigonometricFunction, MathTrigonometryType, MathLimit, MathLimitType, MathDerivative, MathDerivativeType, MathNodeType, MathNodeName, MathNumericSet, MathNumericSetValues } from "semantic-math-editor";
 import {test as mt} from "semantic-math-editor"
 import axios from "axios";
-import { SympyError, PreparedSympyCall, UnsupportedSympyConstruction, Equiv, Simpler } from "../src/model";
+import { HttpClient,SympyError, PreparedSympyCall, UnsupportedSympyConstruction, Equiv, Simpler } from "../src/model";
+
 
 const expect = chai.expect;
 const SERVER_ADDRESS = "https://math-processor.math-editor.com";

@@ -61,6 +61,8 @@
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
   },
   "include": [
+    //IMPORTANT! The exported file must go first. Otherwise typedoc would prefer links from following files over links from the exported module
+    "semantic-math-processor-client.ts",
     "src/**/*",
     "test/**/*"
   ],

@@ -1,9 +1,24 @@
-
 /**
  * @hidden
  * @packageDocumentation
  */
 import { SympyToken, SympyStringify } from "./sympy-parser";
+
+
+/**
+ * Implement it to wrap any http client
+ * @category API
+ */
+export interface HttpClient {
+
+  requestAsync<Request, Response>(
+    method: 'GET' | 'POST',
+    url: string,
+    content?: Request,
+    callback?: (response: Response) => void,
+    errorCallback?: (err: any) => void): void
+}
+
 
 /**
  * Error codes of Sympy client

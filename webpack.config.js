@@ -36,7 +36,7 @@ module.exports = [{
     mode: isProd ? 'none' : 'development',
 
     entry: {
-        index: path.join(__dirname, 'src', 'semantic-math-processor-client.ts'),
+        index: path.resolve(__dirname,'semantic-math-processor-client.ts'),
     },
     output: {
         filename: '[name].bundle.js',

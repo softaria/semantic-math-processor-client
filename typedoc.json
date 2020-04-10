@@ -1,4 +1,5 @@
 {
+  
   "out": "docs",
   "mode":"library",
   "excludeExternals": true,
@@ -6,9 +7,10 @@
   "excludePrivate":true,
   "excludeProtected":true,
   "categoryOrder": ["API", "*"],
-  "defaultCategory": "internal",
+  "defaultCategory": "Internal",
   "readme": "./TYPEDOC.md",
   "exclude": "test/*.**",
   "name":"Semantic Math Processor Client",
-  "theme": "minimal" 
+  "theme": "minimal" ,
+  "ignoreCompilerErrors":true
 }

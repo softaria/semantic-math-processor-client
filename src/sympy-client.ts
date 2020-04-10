@@ -8,8 +8,8 @@ import { SympyRESTClient } from "./sympy-rest-client";
 import { fromSympy } from "./from-sympy";
 import { BaseSymPyVisitor, InvalidNodeError } from "./to-sympy";
 import { unquote } from "./utils";
-import { SemanticErrorDescription, MathNode, MathNodeVisitor, acceptMathNode, MathDifferential, MathSet, MathSystemOfEquations, HttpClient, MathStructure, MathNumber, MathUnaryMinus, MathVariable } from "semantic-math-editor";
-import { PreparedSympyCall, EquivResponse, PlotInterval, Plot2dParams, SympyError, Plot3dParams } from "./model";
+import { SemanticErrorDescription, MathNode, MathNodeVisitor, acceptMathNode, MathDifferential, MathSet, MathSystemOfEquations,  MathNumber, MathUnaryMinus, MathVariable } from "semantic-math-editor";
+import { PreparedSympyCall, EquivResponse, PlotInterval, Plot2dParams, SympyError, Plot3dParams, HttpClient } from "./model";
 
 
 class BrowserBasedHttpClient implements HttpClient {
@@ -62,56 +62,9 @@ export class SympyClient {
   /**
    * 
    * @param serverAddress - http(s) address of the [MathProcessor](https://github.com/softaria/math-processor) to call
-   * @param http -  HttpClient. No need to pass it when use from browser. 
-   * if use not from broswer you need to implement semantic-math-editor's HttpClient interface as following:
-   * ```
-   *    export interface HttpClient {
-   *       requestAsync<Request, Response>(method: 'GET' | 'POST', url: string, content?: Request, callback?: (response: Response) => void, errorCallback?: (err: any) => void): void;
-   *    }
-   * ```
-   * For your convinience here is the anxious based implementation:
-   * <details>
-   * <summary> Click to expand</summary>
-   * 
-   * ```
-   * 
-   *  class AxiousBasedHttpClient implements HttpClient {
-   *   requestAsync<Request, Response>(method: "GET" | "POST", 
-   *                                   url: string, 
-   *                                   content?: Request, 
-   *                                   callback?: (response: Response) => void, 
-   *                                   errorCallback?: (err: any) => void
-   *                                   ): void {
-   *    switch (method) {
-   *      case "GET":
-   *        axios.get(url).then((result) => {
-   *          callback(result.data);
-   *        }).catch((error) => {
-   *          console.log("ERROR:" + JSON.stringify(error));
-   *          errorCallback(error);
-   *        });
-   *        break;
-   *      case "POST":
-   *        let axiosConfig = {
-   *          headers: {
-   *            'Content-Type': 'application/json;charset=UTF-8',
-   *            "Access-Control-Allow-Origin": "*",
-   *          }
-   *        };
-   *        axios.post(url, content, axiosConfig).then((result) => {
-   *          callback(result.data);
-   *        }).catch((error) => {
-   *          console.log("ERROR:" + JSON.stringify(error));
-   *          errorCallback(error);
-   *        });
-   *        break;
-   *    }
-   *   }
-   * }  
-   * 
-   * ```
-   * 
-   * </details>
+   * @param http -  No need to pass it when use from browser. 
+   * if use not from broswer you need to implement HttpClient interface
+   * For example, consider using AxiousBasedHttpClient from /test/sympy-rest-client.ts
    */
   constructor(serverAddress: string, http?: HttpClient) {
     this.client = new SympyRESTClient(serverAddress, http ? http : new BrowserBasedHttpClient());
