@@ -29,8 +29,9 @@ jobs:
     - run: |                        
         # copy all staff to distrib
         mkdir distrib
+        mkdir distrib/src
         cp dist/* distrib/
-        cp tsOutputs/src/*.d.ts distrib/
+        cp tsOutputs/src/*.d.ts distrib/src/
         cp tsOutputs/semantic-math-processor-client.d.ts distrib/
         cp dist-package.json distrib/package.json
         cp README.md distrib/README.md
