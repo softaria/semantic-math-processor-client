@@ -1,7 +1,7 @@
 import * as chai from "chai";
 import "./test-helper";
 import { SympyClient } from "../src/sympy-client";
-import { MathTree, createEditorImpl, MathNode, acceptMathNode, MathNodePrinter, MathFunction, MathVariable, MathNumber, MathDeterminant, MathPiecewiseFunction, MathEquality, MathEqualityType, MathAnd, MathUnaryMinus, MathRawText, MathStructure, SemanticErrorDescription, MathPlus, MathPower, MathTrigonometricFunction, MathTrigonometryType, MathLimit, MathLimitType, MathDerivative, MathDerivativeType, MathNodeType, MathNodeName, MathNumericSet, MathNumericSetValues } from "semantic-math-editor";
+import { MathNode, acceptMathNode, MathNodePrinter, MathFunction, MathVariable, MathNumber, MathDeterminant, MathPiecewiseFunction, MathEquality, MathEqualityType, MathAnd, MathUnaryMinus, MathRawText,  SemanticErrorDescription, MathPlus, MathPower, MathTrigonometricFunction, MathTrigonometryType, MathLimit, MathLimitType, MathDerivative, MathDerivativeType,  MathNumericSet, MathNumericSetValues, createAPI } from "semantic-math-editor";
 import {test as mt} from "semantic-math-editor"
 import axios from "axios";
 import { HttpClient,SympyError, PreparedSympyCall, UnsupportedSympyConstruction, Equiv, Simpler } from "../src/model";
@@ -268,18 +268,17 @@ describe("Sympy client:", () => {
   it("test approach", async function () {
     this.timeout(20000);
 
-    const editor = createEditorImpl();
+    const tree = createAPI();
+    tree.paste("\\int_{0}^{1} {2x} d x");
 
-    editor.paste("\\int_{0}^{1} {2x} d x");
-
-    const tree = new MathTree(editor); 
+    
     const node = tree.getTree();
 
     const preparedCall = client.prepareCompute(node);
     if (preparedCall instanceof PreparedSympyCall) {
       const result = await client.compute(preparedCall);
       const r = result as MathRawText;
-      console.log(r.text);
+      //console.log(r.text);
     }
     else {
       throw new Error();
@@ -287,17 +286,18 @@ describe("Sympy client:", () => {
   })
 
   it("test low indexes", () => {
-    const editor = createEditorImpl();
 
-    editor.paste("{\\Psi }_{2,36}");
+    const tree = createAPI();
 
-    const tree = new MathTree(editor);
+    tree.paste("{\\Psi }_{2,36}");
+
+    
     const node = tree.getTree();
 
     const token = client.prepareCompute(node);
     if (token instanceof PreparedSympyCall) {
-      console.log(token.stringify());
-      console.log(acceptMathNode(node, MathNodePrinter.instance));
+      //console.log(token.stringify());
+      //console.log(acceptMathNode(node, MathNodePrinter.instance));
     }
   })
 
