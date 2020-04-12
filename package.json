@@ -24,6 +24,6 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "semantic-math-editor": "^2.0.0-alpha.3"
+    "semantic-math-editor": "^2.0.0-alpha.4"
   }
 }

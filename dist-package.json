@@ -17,7 +17,7 @@
 	{ "name" : "Roman Kuzmin", "email" : "roman@softaria.com" }
   ],
   "peerDependencies": {
-    "semantic-math-editor": "^2.0.0-alpha.3"
+    "semantic-math-editor": "^2.0.0-alpha.4"
   }
 
 }
