@@ -21,7 +21,7 @@
     "typedoc": "^0.17.0-3",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "semantic-math-editor": "^2.0.2"
